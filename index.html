@@ -3,22 +3,624 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Meine Website</title>
+  <title>WaKriTech | Smarte Tech-Lösungen</title>
+  <meta name="description" content="WaKriTech entwickelt smarte Tech-Lösungen für digitale Produkte, Automatisierung und innovative Software.">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.5;
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255, 255, 255, 0.06);
+      --card-border: rgba(255, 255, 255, 0.12);
+      --text: #f4f7fb;
+      --muted: #b5bfd3;
+      --primary: #2f78b7;
+      --primary-2: #4ba0e8;
+      --dark: #2f3440;
+      --white: #ffffff;
+      --max: 1180px;
+      --radius: 22px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
     }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(47, 120, 183, 0.28), transparent 28%),
+        radial-gradient(circle at top right, rgba(75, 160, 232, 0.18), transparent 25%),
+        linear-gradient(180deg, #0a0f1d 0%, #0d1325 45%, #111a31 100%);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(9, 13, 26, 0.68);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 4px;
+    }
+
+    .brand span {
+      font-size: 1.05rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      transition: 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: var(--white);
+      box-shadow: 0 12px 30px rgba(47, 120, 183, 0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(47, 120, 183, 0.35);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--white);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero {
+      padding: 84px 0 60px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(75, 160, 232, 0.12);
+      border: 1px solid rgba(75, 160, 232, 0.2);
+      color: #bfe1ff;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
     h1 {
-      margin-bottom: 8px;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1.02;
+      margin: 0 0 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-points {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: #d8e4f5;
+      font-size: 0.96rem;
+    }
+
+    .hero-points span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-points span::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 0 14px rgba(75, 160, 232, 0.8);
+    }
+
+    .hero-card {
+      position: relative;
+      border-radius: 28px;
+      padding: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(75, 160, 232, 0.28), transparent 70%);
+      pointer-events: none;
+    }
+
+    .logo-panel {
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(240,244,250,0.94));
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 18px;
+      min-height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-panel img {
+      max-width: 100%;
+      max-height: 200px;
+      object-fit: contain;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .mini-box {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-box strong {
+      display: block;
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .mini-box span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    section {
+      padding: 38px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3.8vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(47,120,183,0.22), rgba(75,160,232,0.12));
+      border: 1px solid rgba(75,160,232,0.18);
+      font-size: 1.2rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .about .card p + p {
+      margin-top: 14px;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+    }
+
+    .cta-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(47,120,183,0.16), rgba(255,255,255,0.05));
+    }
+
+    .cta-box h3 {
+      font-size: 1.5rem;
+      margin: 0 0 12px;
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    footer {
+      padding: 30px 0 46px;
+      color: #9eabc2;
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-wrap,
+      .about,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 56px;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      .mini-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Hallo</h1>
-  <p>Das ist meine erste kostenlose Website.</p>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <img src="logo.jpeg" alt="WaKriTech Logo">
+        <span>WaKriTech</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Startup für smarte Tech-Lösungen</div>
+          <h1>Technologie, die Ideen in echte Lösungen verwandelt.</h1>
+          <p>
+            WaKriTech entwickelt moderne, smarte und praxisnahe Tech-Lösungen für digitale Produkte,
+            Automatisierung und innovative Anwendungen. Unser Fokus liegt darauf, Technologie verständlich,
+            effizient und zukunftsfähig einzusetzen.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#kontakt">Projekt anfragen</a>
+            <a class="btn btn-secondary" href="#leistungen">Mehr erfahren</a>
+          </div>
+
+          <div class="hero-points">
+            <span>Innovative Software</span>
+            <span>Smarte Automatisierung</span>
+            <span>Digitale Produktideen</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="logo-panel">
+            <img src="logo.jpeg" alt="WaKriTech Walter-Krisch Technologies Logo">
+          </div>
+
+          <div class="mini-grid">
+            <div class="mini-box">
+              <strong>Smart</strong>
+              <span>Lösungsorientierte Technologie mit klarem Nutzen.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Modern</strong>
+              <span>Klare Systeme, saubere Umsetzung, starke User Experience.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Flexibel</strong>
+              <span>Vom Konzept bis zum digitalen Prototypen.</span>
+            </div>
+            <div class="mini-box">
+              <strong>Zukunftsnah</strong>
+              <span>Technik mit Blick auf Skalierung und Weiterentwicklung.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="leistungen">
+      <div class="container">
+        <div class="section-head">
+          <h2>Smarte Lösungen für digitale Herausforderungen</h2>
+          <p>
+            WaKriTech steht für moderne Technologieansätze, die Innovation, Funktionalität und Klarheit verbinden.
+            Der Onepager kann später jederzeit um weitere Unterseiten, Projekte oder Leistungsdetails erweitert werden.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">⚙️</div>
+            <h3>Individuelle Tech-Lösungen</h3>
+            <p>
+              Entwicklung digitaler Konzepte und Anwendungen, abgestimmt auf konkrete Anforderungen,
+              Prozesse und Ziele.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">💡</div>
+            <h3>Produkt- und Ideenentwicklung</h3>
+            <p>
+              Von der ersten Idee bis zum greifbaren digitalen Auftritt oder Prototypen:
+              strukturiert, modern und markenorientiert.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">🔗</div>
+            <h3>Smarte Integration</h3>
+            <p>
+              Verbindung von Software, Automatisierung und digitalen Workflows für effizientere,
+              intelligentere Abläufe.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ueber-uns">
+      <div class="container">
+        <div class="section-head">
+          <h2>Über WaKriTech</h2>
+          <p>
+            Walter-Krisch Technologies ist als Startup darauf ausgerichtet, smarte Tech-Lösungen mit
+            klarem Mehrwert zu entwickeln. Der Anspruch ist es, technologische Ideen in moderne,
+            verständliche und wirkungsvolle Produkte zu übersetzen.
+          </p>
+        </div>
+
+        <div class="about">
+          <div class="card">
+            <h3>Vision</h3>
+            <p>
+              Technologie soll nicht unnötig kompliziert sein, sondern echte Probleme lösen, Prozesse verbessern
+              und neue Möglichkeiten schaffen.
+            </p>
+            <p>
+              WaKriTech verbindet Innovationsdenken mit einem klaren Blick für praktische Anwendung.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Ansatz</h3>
+            <p>
+              Modernes Design, intelligente Struktur und technische Klarheit bilden die Grundlage
+              für digitale Lösungen, die nicht nur gut aussehen, sondern auch funktionieren.
+            </p>
+            <p>
+              Der Fokus liegt auf smarten, flexiblen und zukunftsfähigen Konzepten.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="container contact-wrap">
+        <div class="card">
+          <div class="section-head">
+            <h2>Kontakt</h2>
+            <p>
+              Du möchtest ein Projekt besprechen, eine Idee umsetzen oder mehr über WaKriTech erfahren?
+              Dann ist dies der richtige Startpunkt.
+            </p>
+          </div>
+
+          <div class="contact-list">
+            <div class="contact-item"><strong>Unternehmen:</strong> WaKriTech – Walter-Krisch Technologies</div>
+            <div class="contact-item"><strong>Website:</strong> wakritech.com</div>
+            <div class="contact-item"><strong>E-Mail:</strong> info@wakritech.com</div>
+            <div class="contact-item"><strong>Status:</strong> Startup im Aufbau</div>
+          </div>
+        </div>
+
+        <aside class="card cta-box">
+          <h3>Bereit für den nächsten Schritt?</h3>
+          <p>
+            Dieser Onepager ist eine moderne erste Präsenz für WaKriTech. Als Nächstes können Leistungen,
+            Projekte, Referenzen, ein Kontaktformular oder ein Impressum ergänzt werden.
+          </p>
+          <a class="btn btn-primary" href="mailto:info@wakritech.com">Jetzt Kontakt aufnehmen</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© 2026 WaKriTech – Walter-Krisch Technologies</div>
+      <div>Smarter Tech. Klare Lösungen.</div>
+    </div>
+  </footer>
 </body>
 </html>
