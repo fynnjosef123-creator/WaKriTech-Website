@@ -351,6 +351,26 @@
       gap: 20px;
     }
 
+    .product-strip {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(47,120,183,0.2), rgba(255,255,255,0.06));
+    }
+
+    .product-strip strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1.1rem;
+    }
+
+    .product-strip span {
+      display: block;
+      color: var(--muted);
+    }
+
     .about .card p + p {
       margin-top: 14px;
     }
@@ -412,8 +432,14 @@
       .hero-grid,
       .contact-wrap,
       .about,
+      .product-strip,
       .grid-3 {
         grid-template-columns: 1fr;
+      }
+
+      .product-strip {
+        align-items: flex-start;
+        flex-direction: column;
       }
 
       .nav {
@@ -472,6 +498,7 @@
       </a>
 
       <nav class="nav-links">
+        <a href="#selection-ai">Selection AI</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ueber-uns">Über uns</a>
         <a href="#kontakt">Kontakt</a>
@@ -529,6 +556,55 @@
               <span>Lösungen, die im echten Einsatz funktionieren sollen.</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="selection-ai">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selection AI</h2>
+          <p>
+            Eine Desktop-App für Unternehmen, die markierten Text, Screenshots und
+            wiederkehrende Wissensarbeit direkt dort unterstützt, wo gearbeitet wird.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">⌘</div>
+            <h3>KI im Kontextmenü</h3>
+            <p>
+              Text markieren, Rechtsklick machen und direkt zusammenfassen,
+              übersetzen, recherchieren oder eigene Unternehmens-Tools ausführen.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">▣</div>
+            <h3>Text und Screenshots</h3>
+            <p>
+              Neben Textauswahlen können auch Screenshots erfasst, zugeschnitten und
+              mit denselben KI-Aktionen verarbeitet werden.
+            </p>
+          </article>
+
+          <article class="card">
+            <div class="icon">☁</div>
+            <h3>Zentral verwaltet</h3>
+            <p>
+              Konten, Tool-Auswahl, eigene Prompts und zentrale KI-Abrechnung laufen
+              über den Selection-AI-Dienst statt über einzelne API-Schlüssel.
+            </p>
+          </article>
+        </div>
+
+        <div class="product-strip card">
+          <div>
+            <strong>Selection AI Beta</strong>
+            <span>macOS zuerst, Windows im nächsten Schritt. Der öffentliche Download folgt nach Signierung und Online-Deployment.</span>
+          </div>
+          <a class="btn btn-primary" href="mailto:info@wakritech.com?subject=Selection%20AI%20Beta">Beta anfragen</a>
         </div>
       </div>
     </section>
