@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selection AI Konto bestaetigen | WaKriTech</title>
+  <meta name="description" content="Bestaetige deine E-Mail-Adresse fuer Selection AI.">
+  <style>
+    :root {
+      --bg: #101827;
+      --panel: rgba(255, 255, 255, 0.075);
+      --panel-border: rgba(255, 255, 255, 0.14);
+      --text: #f6f8fc;
+      --muted: #b8c2d4;
+      --soft: #d8e5f7;
+      --primary: #2f78b7;
+      --primary-2: #66a8df;
+      --success: #50c878;
+      --danger: #ff6b6b;
+      --max: 760px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(102, 168, 223, 0.22), transparent 28%),
+        linear-gradient(180deg, #101827 0%, #172238 100%);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 32px));
+      min-height: 100vh;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      padding: 42px 0;
+    }
+
+    .panel {
+      width: 100%;
+      border: 1px solid var(--panel-border);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: clamp(26px, 5vw, 44px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--soft);
+      font-weight: 700;
+      margin-bottom: 34px;
+    }
+
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: #76a8ff;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+
+    .status {
+      margin-top: 24px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .status.success {
+      border-color: rgba(80, 200, 120, 0.36);
+      background: rgba(80, 200, 120, 0.11);
+      color: #dff8e8;
+    }
+
+    .status.error {
+      border-color: rgba(255, 107, 107, 0.36);
+      background: rgba(255, 107, 107, 0.11);
+      color: #ffe1e1;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    button,
+    .button {
+      appearance: none;
+      border: 0;
+      border-radius: 12px;
+      padding: 13px 18px;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 14px 32px rgba(47, 120, 183, 0.28);
+    }
+
+    .secondary {
+      color: var(--soft);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    button:disabled {
+      opacity: 0.62;
+      cursor: wait;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="panel">
+      <div class="brand">
+        <div class="mark">AI</div>
+        <span>Selection AI</span>
+      </div>
+
+      <h1>Konto bestaetigen</h1>
+      <p>
+        Bestaetige deine E-Mail-Adresse, damit dein Selection AI Konto aktiviert wird.
+        Danach kannst du dich in der Desktop-App anmelden.
+      </p>
+
+      <div id="status" class="status">
+        Bereit zur Bestaetigung.
+      </div>
+
+      <div class="actions">
+        <button id="confirmButton" class="primary" type="button">Konto aktivieren</button>
+        <a class="button secondary" href="/">Zur WaKriTech Website</a>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const SUPABASE_URL = "https://rvfthcroccdgnhkydkrg.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_QzDaf7HV_t-_E2rApDhHvw_KNInELIb";
+    const statusEl = document.getElementById("status");
+    const button = document.getElementById("confirmButton");
+    const params = new URLSearchParams(window.location.search);
+    const tokenHash = params.get("token_hash") || "";
+    const type = params.get("type") || "email";
+
+    function setStatus(message, kind) {
+      statusEl.textContent = message;
+      statusEl.className = kind ? `status ${kind}` : "status";
+    }
+
+    function friendlyError(message) {
+      const text = String(message || "").toLowerCase();
+      if (text.includes("invalid") || text.includes("expired")) {
+        return "Der Bestaetigungslink ist ungueltig oder abgelaufen. Bitte erstelle das Konto erneut oder fordere eine neue E-Mail an.";
+      }
+
+      return message || "Bestaetigung fehlgeschlagen. Bitte versuche es erneut.";
+    }
+
+    async function confirmAccount() {
+      if (!tokenHash) {
+        setStatus("Der Bestaetigungslink ist unvollstaendig. Bitte fordere eine neue E-Mail an.", "error");
+        return;
+      }
+
+      button.disabled = true;
+      setStatus("Dein Konto wird aktiviert ...");
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/auth/v1/verify`, {
+          method: "POST",
+          headers: {
+            apikey: SUPABASE_PUBLISHABLE_KEY,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            token_hash: tokenHash,
+            type
+          })
+        });
+        const payload = await response.json().catch(() => ({}));
+
+        if (!response.ok) {
+          throw new Error(payload.error_description || payload.msg || payload.message || "Bestaetigung fehlgeschlagen.");
+        }
+
+        setStatus("Dein Konto ist aktiviert. Du kannst dich jetzt in der Selection AI App anmelden.", "success");
+      } catch (error) {
+        setStatus(friendlyError(error.message), "error");
+        button.disabled = false;
+      }
+    }
+
+    button.addEventListener("click", confirmAccount);
+  </script>
+</body>
+</html>
