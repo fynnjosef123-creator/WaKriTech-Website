@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selection AI Tarife | WaKriTech</title>
+  <meta name="description" content="Selection AI Tarife vergleichen, Konto anmelden und Abonnement sicher über Stripe abschließen.">
+  <style>
+    :root { color-scheme: dark; --bg:#0c1118; --panel:#111923; --paper:#151f2b; --line:#2a3544; --ink:#f4f7fb; --muted:#a7b2c2; --accent:#6ea2ff; --accent-ink:#07101f; --success:#48c78e; --warn:#ffcb6b; --max:1160px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    button,input { font:inherit; }
+    .container { width:min(var(--max),calc(100% - 32px)); margin:auto; }
+    header { position:sticky; top:0; z-index:10; border-bottom:1px solid var(--line); background:rgba(12,17,24,.92); backdrop-filter:blur(14px); }
+    nav { min-height:68px; display:flex; align-items:center; justify-content:space-between; gap:20px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:760; }
+    .mark { width:36px; height:36px; display:grid; place-items:center; border:1px solid var(--line); border-radius:7px; color:var(--accent); background:var(--panel); font-weight:850; }
+    .navlinks { display:flex; align-items:center; gap:20px; color:var(--muted); font-size:14px; }
+    main { padding:64px 0 80px; }
+    .intro { max-width:760px; margin-bottom:36px; }
+    .eyebrow { margin:0 0 10px; color:var(--accent); font-size:13px; font-weight:750; text-transform:uppercase; }
+    h1 { margin:0 0 14px; font-size:clamp(34px,5vw,56px); line-height:1.06; letter-spacing:0; }
+    .intro p { margin:0; color:var(--muted); font-size:17px; }
+    .notice { display:none; margin:0 0 24px; padding:12px 14px; border-left:3px solid var(--warn); background:#211c11; color:#f6dfaa; }
+    .notice.show { display:block; }
+    .plans { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+    .plan { min-width:0; display:flex; flex-direction:column; border:1px solid var(--line); border-radius:8px; padding:22px; background:var(--panel); }
+    .plan.featured { border-color:var(--accent); box-shadow:inset 0 3px 0 var(--accent); }
+    .plan-label { min-height:20px; color:var(--accent); font-size:12px; font-weight:760; text-transform:uppercase; }
+    .plan h2 { margin:8px 0 2px; font-size:22px; }
+    .price { margin:8px 0 18px; font-size:30px; font-weight:800; }
+    .price small { color:var(--muted); font-size:13px; font-weight:600; }
+    .features { flex:1; display:grid; align-content:start; gap:9px; margin:0 0 22px; padding:0; list-style:none; color:var(--muted); }
+    .features li::before { content:"✓"; margin-right:8px; color:var(--success); font-weight:800; }
+    .button { min-height:44px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:7px; padding:0 15px; background:var(--paper); color:var(--ink); font-weight:720; cursor:pointer; }
+    .button.primary { border-color:var(--accent); background:var(--accent); color:var(--accent-ink); }
+    .button:disabled { opacity:.48; cursor:not-allowed; }
+    .account { margin-top:48px; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr); border-top:1px solid var(--line); padding-top:36px; gap:48px; }
+    .account-copy h2 { margin:0 0 10px; font-size:28px; }
+    .account-copy p { max-width:620px; margin:0; color:var(--muted); }
+    .account-panel { border:1px solid var(--line); border-radius:8px; padding:20px; background:var(--panel); }
+    .account-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
+    .account-head strong { font-size:17px; }
+    .tabs { display:grid; grid-template-columns:1fr 1fr; gap:4px; padding:4px; border:1px solid var(--line); border-radius:7px; background:var(--bg); }
+    .tab { min-height:34px; border:0; border-radius:5px; background:transparent; color:var(--muted); cursor:pointer; }
+    .tab.active { background:var(--paper); color:var(--ink); }
+    form { display:grid; gap:12px; }
+    label { display:grid; gap:6px; color:var(--muted); font-size:12px; font-weight:700; }
+    input { width:100%; min-height:42px; border:1px solid var(--line); border-radius:7px; padding:0 11px; background:var(--bg); color:var(--ink); outline:0; }
+    input:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(110,162,255,.15); }
+    .hidden { display:none !important; }
+    .status { min-height:22px; margin-top:12px; color:var(--muted); font-size:13px; }
+    .status.error { color:#ff9b9b; }
+    .status.success { color:#7fe0b3; }
+    .signed-in { display:grid; gap:12px; }
+    .signed-in small { color:var(--muted); }
+    footer { border-top:1px solid var(--line); color:var(--muted); }
+    footer .container { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    @media (max-width:900px) { .plans { grid-template-columns:repeat(2,minmax(0,1fr)); } .account { grid-template-columns:1fr; gap:24px; } }
+    @media (max-width:560px) { main { padding-top:38px; } .plans { grid-template-columns:1fr; } .navlinks a:not(:last-child) { display:none; } footer .container { align-items:flex-start; flex-direction:column; justify-content:center; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container">
+      <a class="brand" href="/"><span class="mark">AI</span><span>Selection AI</span></a>
+      <div class="navlinks"><a href="/">WaKriTech</a><a href="#konto">Konto</a></div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="intro">
+      <p class="eyebrow">Tarife</p>
+      <h1>KI direkt im Arbeitsfluss.</h1>
+      <p>Wähle den Umfang, der zu deiner Nutzung passt. Verbrauchslimits schützen dein Konto und sorgen für kalkulierbare Kosten.</p>
+    </section>
+
+    <div id="pageNotice" class="notice" role="status"></div>
+    <section id="plans" class="plans" aria-label="Selection AI Tarife"></section>
+
+    <section id="konto" class="account">
+      <div class="account-copy">
+        <p class="eyebrow">Selection AI Konto</p>
+        <h2>Ein Konto für App, Verlauf und Abonnement.</h2>
+        <p>Melde dich mit deinem Selection-AI-Konto an. Der Checkout läuft anschließend auf einer sicheren Stripe-Seite. Zahlungsdaten werden nicht bei WaKriTech gespeichert.</p>
+      </div>
+
+      <div class="account-panel">
+        <div id="authForms">
+          <div class="account-head">
+            <strong id="authTitle">Anmelden</strong>
+            <div class="tabs" aria-label="Kontomodus">
+              <button class="tab active" type="button" data-mode="login">Anmelden</button>
+              <button class="tab" type="button" data-mode="register">Erstellen</button>
+            </div>
+          </div>
+          <form id="loginForm">
+            <label>E-Mail<input name="email" type="email" autocomplete="email" required></label>
+            <label>Passwort<input name="password" type="password" autocomplete="current-password" required></label>
+            <button class="button primary" type="submit">Anmelden</button>
+          </form>
+          <form id="registerForm" class="hidden">
+            <label>Name<input name="name" autocomplete="name" minlength="2" maxlength="80" required></label>
+            <label>Geburtsdatum<input name="birthDate" type="date" required></label>
+            <label>E-Mail<input name="email" type="email" autocomplete="email" required></label>
+            <label>Passwort<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+            <button class="button primary" type="submit">Konto erstellen</button>
+          </form>
+        </div>
+        <div id="signedIn" class="signed-in hidden">
+          <strong id="signedInName">Angemeldet</strong>
+          <small id="signedInEmail"></small>
+          <button id="portalButton" class="button" type="button">Abonnement verwalten</button>
+          <button id="logoutButton" class="button" type="button">Abmelden</button>
+        </div>
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container"><span>© 2026 WaKriTech</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span></div></footer>
+
+  <script>
+    const API_URL = new URLSearchParams(window.location.search).get("api")
+      || "https://selection-ai-api.onrender.com";
+    const SESSION_KEY = "selection_ai_web_session";
+    const fallbackPlans = [
+      { id:"free", name:"Free", priceEurCents:0, monthlyRequestLimit:75, checkoutAvailable:true },
+      { id:"starter", name:"Starter", priceEurCents:990, monthlyRequestLimit:1000, checkoutAvailable:false },
+      { id:"pro", name:"Pro", priceEurCents:1990, monthlyRequestLimit:4000, checkoutAvailable:false },
+      { id:"business", name:"Business", priceEurCents:3990, monthlyRequestLimit:10000, checkoutAvailable:false }
+    ];
+    let plans = fallbackPlans;
+    let pendingPlanId = "";
+
+    const statusEl = document.getElementById("status");
+    const noticeEl = document.getElementById("pageNotice");
+
+    function getSession() {
+      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"); } catch { return null; }
+    }
+    function setSession(value) {
+      value ? sessionStorage.setItem(SESSION_KEY, JSON.stringify(value)) : sessionStorage.removeItem(SESSION_KEY);
+      renderAccount();
+    }
+    function setStatus(message, kind = "") { statusEl.textContent = message; statusEl.className = `status ${kind}`.trim(); }
+    function euro(cents) { return new Intl.NumberFormat("de-DE", { style:"currency", currency:"EUR" }).format(Number(cents || 0) / 100); }
+
+    async function api(path, options = {}) {
+      const headers = { "Content-Type":"application/json", ...(options.headers || {}) };
+      const session = getSession();
+      if (options.auth !== false && session?.token) headers.Authorization = `Bearer ${session.token}`;
+      const response = await fetch(`${API_URL}${path}`, { ...options, headers });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        const error = new Error(payload.error || `Anfrage fehlgeschlagen (${response.status}).`);
+        error.code = payload.code || "";
+        throw error;
+      }
+      return payload;
+    }
+
+    function planFeatures(plan) {
+      const shared = ["Text, Chat und Screenshots", "Eigene Tools und Cloud-Synchronisierung"];
+      return [`${new Intl.NumberFormat("de-DE").format(plan.monthlyRequestLimit)} KI-Anfragen pro Monat`, ...shared];
+    }
+
+    function renderPlans() {
+      const root = document.getElementById("plans");
+      root.replaceChildren();
+      plans.forEach((plan) => {
+        const card = document.createElement("article");
+        card.className = `plan ${plan.id === "pro" ? "featured" : ""}`;
+        const label = document.createElement("div"); label.className = "plan-label"; label.textContent = plan.id === "pro" ? "Empfohlen" : "";
+        const title = document.createElement("h2"); title.textContent = plan.name;
+        const price = document.createElement("div"); price.className = "price"; price.textContent = euro(plan.priceEurCents);
+        const unit = document.createElement("small"); unit.textContent = plan.priceEurCents ? " / Monat" : " dauerhaft"; price.append(unit);
+        const list = document.createElement("ul"); list.className = "features";
+        planFeatures(plan).forEach((feature) => { const item = document.createElement("li"); item.textContent = feature; list.append(item); });
+        const button = document.createElement("button"); button.className = `button ${plan.id === "pro" ? "primary" : ""}`; button.type = "button";
+        button.textContent = plan.id === "free" ? "Kostenlos starten" : "Tarif wählen";
+        button.disabled = plan.id !== "free" && !plan.checkoutAvailable;
+        button.addEventListener("click", () => choosePlan(plan.id));
+        card.append(label, title, price, list, button); root.append(card);
+      });
+    }
+
+    function renderAccount() {
+      const session = getSession();
+      document.getElementById("authForms").classList.toggle("hidden", Boolean(session?.token));
+      document.getElementById("signedIn").classList.toggle("hidden", !session?.token);
+      document.getElementById("signedInName").textContent = session?.user?.name || "Angemeldet";
+      document.getElementById("signedInEmail").textContent = session?.user?.email || "";
+    }
+
+    async function choosePlan(planId) {
+      if (planId === "free") { document.getElementById("konto").scrollIntoView(); setStatus("Melde dich an oder erstelle ein Konto, um Selection AI zu nutzen."); return; }
+      pendingPlanId = planId;
+      if (!getSession()?.token) { document.getElementById("konto").scrollIntoView(); setStatus("Melde dich an, danach öffnen wir direkt den gewählten Tarif."); return; }
+      await startCheckout(planId);
+    }
+
+    async function startCheckout(planId) {
+      setStatus("Sicherer Checkout wird geöffnet ...");
+      try {
+        const result = await api("/v1/billing/checkout", { method:"POST", body:JSON.stringify({ planId }) });
+        window.location.assign(result.url);
+      } catch (error) {
+        setStatus(error.message, "error");
+      }
+    }
+
+    document.querySelectorAll("[data-mode]").forEach((button) => button.addEventListener("click", () => {
+      const register = button.dataset.mode === "register";
+      document.querySelectorAll("[data-mode]").forEach((item) => item.classList.toggle("active", item === button));
+      document.getElementById("loginForm").classList.toggle("hidden", register);
+      document.getElementById("registerForm").classList.toggle("hidden", !register);
+      document.getElementById("authTitle").textContent = register ? "Konto erstellen" : "Anmelden";
+      setStatus("");
+    }));
+
+    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault(); setStatus("Anmeldung läuft ...");
+      const data = Object.fromEntries(new FormData(event.currentTarget));
+      try {
+        const session = await api("/v1/auth/login", { method:"POST", auth:false, body:JSON.stringify(data) });
+        setSession(session); setStatus("Erfolgreich angemeldet.", "success");
+        if (pendingPlanId) await startCheckout(pendingPlanId);
+      } catch (error) { setStatus(error.message, "error"); }
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", async (event) => {
+      event.preventDefault(); setStatus("Konto wird erstellt ...");
+      const data = Object.fromEntries(new FormData(event.currentTarget));
+      try {
+        const result = await api("/v1/auth/register", { method:"POST", auth:false, body:JSON.stringify(data) });
+        if (result.needsEmailConfirmation) {
+          setStatus("Konto erstellt. Bitte bestätige jetzt die E-Mail und melde dich anschließend an.", "success");
+        } else {
+          setSession(result); setStatus("Konto erstellt und angemeldet.", "success");
+        }
+      } catch (error) { setStatus(error.message, "error"); }
+    });
+
+    document.getElementById("portalButton").addEventListener("click", async () => {
+      setStatus("Kundenportal wird geöffnet ...");
+      try { const result = await api("/v1/billing/portal", { method:"POST", body:"{}" }); window.location.assign(result.url); }
+      catch (error) { setStatus(error.message, "error"); }
+    });
+    document.getElementById("logoutButton").addEventListener("click", () => { setSession(null); pendingPlanId = ""; setStatus("Abgemeldet."); });
+
+    const query = new URLSearchParams(location.search);
+    if (query.get("checkout") === "cancelled") { noticeEl.textContent = "Der Checkout wurde abgebrochen. Es wurde kein Tarif geändert."; noticeEl.classList.add("show"); }
+    if (query.get("portal") === "returned") { noticeEl.textContent = "Änderungen aus dem Kundenportal werden automatisch mit Selection AI synchronisiert."; noticeEl.classList.add("show"); }
+
+    renderAccount(); renderPlans();
+    api("/v1/billing/plans", { method:"GET", auth:false }).then((result) => {
+      if (Array.isArray(result.plans) && result.plans.length) { plans = result.plans; renderPlans(); }
+    }).catch(() => {
+      noticeEl.textContent = "Die Tarifdaten sind gerade nicht erreichbar. Bitte versuche es später erneut."; noticeEl.classList.add("show");
+    });
+  </script>
+</body>
+</html>
