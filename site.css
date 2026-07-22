@@ -23,6 +23,7 @@
 }
 
 * { box-sizing: border-box; }
+.visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-height) + 18px); }
 body { margin: 0; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.55; letter-spacing: 0; }
 body, button, input, select, textarea { font-family: inherit; }
@@ -136,9 +137,8 @@ button { color: inherit; }
 
 .company-hero { min-height: 600px; display: grid; align-items: center; padding: 72px 0; background: var(--paper); color: var(--paper-text); }
 .company-hero-inner { display: flex; flex-direction: column; align-items: flex-start; }
-.company-logo-frame { width: min(350px, 78vw); aspect-ratio: 2.75 / 1; overflow: hidden; margin-bottom: 42px; }
-.company-logo { width: 100%; max-width: none; height: auto; transform: translateY(-20%); mix-blend-mode: multiply; }
-.company-hero h1 { margin: 0 0 15px; font-size: clamp(45px, 7vw, 78px); line-height: 1; }
+.company-logo-frame { width: min(540px, 88vw); margin-bottom: 48px; }
+.company-logo { display: block; width: 100%; height: auto; }
 .company-hero p { max-width: 700px; margin: 0; color: var(--paper-muted); font-size: 19px; }
 .company-principles { display: flex; gap: 10px 24px; flex-wrap: wrap; margin-top: 32px; padding-top: 18px; border-top: 1px solid #cbd3dc; color: #435064; font-size: 13px; font-weight: 760; }
 .company-principles span { display: flex; align-items: center; gap: 8px; }
