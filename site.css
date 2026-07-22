@@ -76,15 +76,16 @@ button { color: inherit; }
 .light-band { background: var(--paper); color: var(--paper-text); }
 .light-band .kicker { color: #315f9d; }
 .light-band .section-heading p, .light-band .muted { color: var(--paper-muted); }
-.flow-grid { display: grid; grid-template-columns: minmax(0, 0.82fr) minmax(460px, 1.18fr); gap: 74px; align-items: center; }
+.flow-grid { display: block; }
+.flow-copy { max-width: 850px; }
 .flow-copy h2 { margin: 0 0 16px; font-size: clamp(32px, 4vw, 48px); line-height: 1.08; }
 .flow-copy > p { margin: 0; color: var(--paper-muted); font-size: 17px; }
-.workflow-list { display: grid; gap: 18px; margin: 30px 0 0; padding: 0; list-style: none; }
+.workflow-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 34px 0 0; padding: 0; list-style: none; }
 .workflow-list li { display: grid; grid-template-columns: 28px 1fr; gap: 13px; align-items: start; }
 .workflow-list strong { color: #315f9d; font-size: 13px; }
 .workflow-list span { font-weight: 710; }
 .workflow-list small { display: block; margin-top: 3px; color: var(--paper-muted); font-size: 14px; }
-.flow-visual { position: relative; margin: 0; padding: 18px 18px 18px 54px; }
+.flow-visual { position: relative; margin: 48px 0 0; padding: 20px 20px 20px 62px; }
 .flow-visual::before { content: ""; position: absolute; inset: 0; border: 1px solid #cbd3dc; border-radius: 8px; background: #e5eaf0; }
 .flow-visual img, .flow-visual video { position: relative; width: 100%; border: 1px solid #273241; border-radius: 8px; box-shadow: 0 18px 42px rgba(19, 30, 44, 0.18); }
 .workflow-video video { aspect-ratio: 16 / 9; object-fit: cover; background: #fff; }
@@ -134,9 +135,14 @@ button { color: inherit; }
 .company-value span { color: var(--paper-muted); font-size: 13px; }
 
 .company-hero { min-height: 600px; display: grid; align-items: center; padding: 72px 0; background: var(--paper); color: var(--paper-text); }
-.company-logo { width: min(560px, 86vw); height: auto; margin-bottom: 34px; mix-blend-mode: multiply; }
+.company-hero-inner { display: flex; flex-direction: column; align-items: flex-start; }
+.company-logo-frame { width: min(350px, 78vw); aspect-ratio: 2.75 / 1; overflow: hidden; margin-bottom: 42px; }
+.company-logo { width: 100%; max-width: none; height: auto; transform: translateY(-20%); mix-blend-mode: multiply; }
 .company-hero h1 { margin: 0 0 15px; font-size: clamp(45px, 7vw, 78px); line-height: 1; }
 .company-hero p { max-width: 700px; margin: 0; color: var(--paper-muted); font-size: 19px; }
+.company-principles { display: flex; gap: 10px 24px; flex-wrap: wrap; margin-top: 32px; padding-top: 18px; border-top: 1px solid #cbd3dc; color: #435064; font-size: 13px; font-weight: 760; }
+.company-principles span { display: flex; align-items: center; gap: 8px; }
+.company-principles span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #315f9d; }
 .company-story { border-top: 1px solid var(--line); }
 .company-story-grid { display: grid; grid-template-columns: minmax(0, .72fr) minmax(0, 1.28fr); gap: 86px; align-items: start; }
 .company-story h2 { margin: 0; font-size: clamp(31px, 4vw, 48px); line-height: 1.08; }
@@ -211,6 +217,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .nav-cta { margin-top: 8px; padding: 0 15px !important; }
   .flow-grid, .cloud-grid, .company-grid, .company-story-grid, .account { grid-template-columns: 1fr; gap: 40px; }
   .flow-visual { max-width: 680px; }
+  .workflow-list { grid-template-columns: 1fr; gap: 18px; }
   .feature-grid { grid-template-columns: 1fr; }
   .feature-item { padding: 25px 0; }
   .feature-item + .feature-item { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
@@ -231,6 +238,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .hero-copy { font-size: 16px; }
   .hero-meta { display: grid; gap: 7px; margin-top: 22px; }
   .flow-visual { padding: 12px 12px 12px 28px; }
+  .company-logo-frame { margin-bottom: 32px; }
   .showcase-grid, .download-grid, .install-grid, .plans, .company-values { grid-template-columns: 1fr; }
   .company-hero { min-height: 560px; padding: 54px 0; }
   .install-step { padding: 22px 0; }

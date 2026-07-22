@@ -19,3 +19,25 @@ document.addEventListener("click", (event) => {
   siteNav.classList.remove("is-open");
   navToggle?.setAttribute("aria-expanded", "false");
 });
+
+const workflowVideo = document.querySelector(".workflow-video video");
+
+if (workflowVideo) {
+  workflowVideo.muted = true;
+  const playWorkflow = () => workflowVideo.play().catch(() => {});
+
+  if ("IntersectionObserver" in window) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          playWorkflow();
+        } else {
+          workflowVideo.pause();
+        }
+      });
+    }, { threshold: 0.2 });
+    videoObserver.observe(workflowVideo);
+  } else {
+    playWorkflow();
+  }
+}
