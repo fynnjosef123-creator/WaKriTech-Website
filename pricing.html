@@ -56,6 +56,9 @@
     .status.success { color:#7fe0b3; }
     .signed-in { display:grid; gap:12px; }
     .signed-in small { color:var(--muted); }
+    .legal-note { margin-top:18px; color:var(--muted); font-size:13px; }
+    .legal-consent { display:flex; grid-template-columns:18px 1fr; align-items:start; gap:9px; margin:14px 0; color:var(--muted); font-size:13px; font-weight:500; }
+    .legal-consent input { width:18px; min-height:18px; margin:2px 0 0; }
     footer { border-top:1px solid var(--line); color:var(--muted); }
     footer .container { min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
     @media (max-width:900px) { .plans { grid-template-columns:repeat(2,minmax(0,1fr)); } .account { grid-template-columns:1fr; gap:24px; } }
@@ -75,6 +78,7 @@
       <p class="eyebrow">Tarife</p>
       <h1>KI direkt im Arbeitsfluss.</h1>
       <p>Wähle den Umfang, der zu deiner Nutzung passt. Verbrauchslimits schützen dein Konto und sorgen für kalkulierbare Kosten.</p>
+      <p class="legal-note">Die angezeigten Preise sind der aktuelle Planungsstand. Vor dem Verkaufsstart werden sie als Gesamtpreise einschließlich aller anfallenden Steuern ausgewiesen.</p>
     </section>
 
     <div id="pageNotice" class="notice" role="status"></div>
@@ -105,7 +109,7 @@
             <label>Name<input name="name" autocomplete="name" minlength="2" maxlength="80" required></label>
             <label>Geburtsdatum<input name="birthDate" type="date" required></label>
             <label>E-Mail<input name="email" type="email" autocomplete="email" required></label>
-            <label>Passwort<input name="password" type="password" autocomplete="new-password" minlength="8" required></label>
+            <label>Passwort<input name="password" type="password" autocomplete="new-password" minlength="12" required></label>
             <button class="button primary" type="submit">Konto erstellen</button>
           </form>
         </div>
@@ -115,12 +119,13 @@
           <button id="portalButton" class="button" type="button">Abonnement verwalten</button>
           <button id="logoutButton" class="button" type="button">Abmelden</button>
         </div>
+        <label class="legal-consent"><input id="termsConsent" type="checkbox"><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a> und habe die <a href="widerruf.html" target="_blank">Widerrufsbelehrung</a> gelesen.</span></label>
         <div id="status" class="status" aria-live="polite"></div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container"><span>© 2026 WaKriTech</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></span></div></footer>
+  <footer><div class="container"><span>© 2026 WaKriTech</span><span><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a> · <a href="widerruf.html">Vertrag widerrufen</a> · <a href="kuendigen.html">Verträge hier kündigen</a></span></div></footer>
 
   <script>
     const API_URL = new URLSearchParams(window.location.search).get("api")
@@ -204,6 +209,10 @@
     }
 
     async function startCheckout(planId) {
+      if (!document.getElementById("termsConsent").checked) {
+        setStatus("Bitte akzeptiere vor dem Checkout die AGB und bestätige die Widerrufsbelehrung.", "error");
+        return;
+      }
       setStatus("Sicherer Checkout wird geöffnet ...");
       try {
         const result = await api("/v1/billing/checkout", { method:"POST", body:JSON.stringify({ planId }) });
