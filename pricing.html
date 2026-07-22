@@ -133,6 +133,7 @@
       { id:"business", name:"Business", priceEurCents:3990, monthlyRequestLimit:10000, checkoutAvailable:false }
     ];
     let plans = fallbackPlans;
+    let billingMode = "unconfigured";
     let pendingPlanId = "";
 
     const statusEl = document.getElementById("status");
@@ -257,7 +258,12 @@
 
     renderAccount(); renderPlans();
     api("/v1/billing/plans", { method:"GET", auth:false }).then((result) => {
+      billingMode = result.billingMode || "unconfigured";
       if (Array.isArray(result.plans) && result.plans.length) { plans = result.plans; renderPlans(); }
+      if (billingMode !== "live") {
+        noticeEl.textContent = "Die kostenpflichtigen Tarife werden gerade für den Live-Betrieb vorbereitet.";
+        noticeEl.classList.add("show");
+      }
     }).catch(() => {
       noticeEl.textContent = "Die Tarifdaten sind gerade nicht erreichbar. Bitte versuche es später erneut."; noticeEl.classList.add("show");
     });
