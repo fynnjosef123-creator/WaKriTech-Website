@@ -3,826 +3,148 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>WaKriTech | Smarte Tech-Lösungen</title>
-  <meta name="description" content="WaKriTech entwickelt smarte Tech-Lösungen, digitale Produkte und technische Konzepte mit klarem praktischen Nutzen.">
-  <style>
-    :root {
-      --bg: #162033;
-      --bg-soft: #1c2740;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-border: rgba(255, 255, 255, 0.14);
-      --text: #f4f7fb;
-      --muted: #c2cada;
-      --primary: #2f78b7;
-      --primary-2: #5a9fd8;
-      --dark: #383d49;
-      --white: #ffffff;
-      --max: 1180px;
-      --radius: 22px;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(47, 120, 183, 0.22), transparent 30%),
-        radial-gradient(circle at top right, rgba(90, 159, 216, 0.14), transparent 28%),
-        linear-gradient(180deg, #182233 0%, #1a2538 48%, #202d43 100%);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(12px);
-      background: rgba(20, 29, 46, 0.72);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
-    }
-
-    .brand img {
-      width: 72px;
-      height: 72px;
-      object-fit: contain;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.96);
-      padding: 2px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-      flex-shrink: 0;
-    }
-
-    .brand span {
-      font-size: 1.25rem;
-      line-height: 1;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 22px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a,
-    .nav-dropdown summary {
-      color: var(--muted);
-      font-size: 0.96rem;
-      transition: 0.2s ease;
-    }
-
-    .nav-links a:hover,
-    .nav-dropdown summary:hover,
-    .nav-dropdown[open] summary {
-      color: var(--white);
-    }
-
-    .nav-dropdown {
-      position: relative;
-    }
-
-    .nav-dropdown summary {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      list-style: none;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .nav-dropdown summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .nav-caret {
-      width: 7px;
-      height: 7px;
-      border-right: 1.5px solid currentColor;
-      border-bottom: 1.5px solid currentColor;
-      transform: rotate(45deg) translateY(-2px);
-      transition: transform 0.18s ease;
-    }
-
-    .nav-dropdown[open] .nav-caret {
-      transform: rotate(225deg) translate(-1px, -1px);
-    }
-
-    .nav-dropdown-menu {
-      position: absolute;
-      top: calc(100% + 14px);
-      left: -18px;
-      z-index: 30;
-      min-width: 210px;
-      padding: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 8px;
-      background: #111a29;
-      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
-    }
-
-    .nav-dropdown-menu a {
-      display: block;
-      padding: 10px 12px;
-      border-radius: 6px;
-      color: #dce6f5;
-      white-space: nowrap;
-    }
-
-    .nav-dropdown-menu a:hover {
-      background: rgba(255, 255, 255, 0.07);
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 13px 20px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      font-weight: 600;
-      transition: 0.2s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      color: var(--white);
-      box-shadow: 0 12px 30px rgba(47, 120, 183, 0.28);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 34px rgba(47, 120, 183, 0.35);
-    }
-
-    .btn-secondary {
-      border-color: rgba(255, 255, 255, 0.16);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--white);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .hero {
-      padding: 84px 0 80px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 34px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(75, 160, 232, 0.12);
-      border: 1px solid rgba(75, 160, 232, 0.2);
-      color: #d5e9ff;
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      line-height: 1.02;
-      margin: 0 0 20px;
-      letter-spacing: -0.04em;
-    }
-
-    .hero p {
-      margin: 0 0 28px;
-      color: var(--muted);
-      font-size: 1.06rem;
-      max-width: 700px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-
-    .hero-points {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      color: #d8e4f5;
-      font-size: 0.96rem;
-    }
-
-    .hero-points span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .hero-points span::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-2));
-      box-shadow: 0 0 14px rgba(75, 160, 232, 0.8);
-    }
-
-    .hero-card {
-      position: relative;
-      border-radius: 28px;
-      padding: 24px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      inset: auto -10% -35% auto;
-      width: 240px;
-      height: 240px;
-      background: radial-gradient(circle, rgba(75, 160, 232, 0.28), transparent 70%);
-      pointer-events: none;
-    }
-
-    .logo-panel {
-      background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(241,245,250,0.95));
-      border-radius: 28px;
-      padding: 30px;
-      margin-bottom: 18px;
-      min-height: 270px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,0.65);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
-    }
-
-    .logo-frame {
-      width: 100%;
-      max-width: 360px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px;
-    }
-
-    .logo-panel img {
-      max-width: 100%;
-      max-height: 220px;
-      object-fit: contain;
-      filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.08));
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .mini-box {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mini-box strong {
-      display: block;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-    }
-
-    .mini-box span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    section {
-      padding: 38px 0;
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    .section-head h2 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 3.8vw, 3rem);
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.03rem;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 18px;
-      background: linear-gradient(135deg, rgba(47,120,183,0.22), rgba(75,160,232,0.12));
-      border: 1px solid rgba(75,160,232,0.18);
-      font-size: 1.2rem;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .product-strip {
-      margin-top: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      background: linear-gradient(135deg, rgba(47,120,183,0.2), rgba(255,255,255,0.06));
-    }
-
-    .product-strip strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1.1rem;
-    }
-
-    .product-strip span {
-      display: block;
-      color: var(--muted);
-    }
-
-    .product-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .about .card p + p {
-      margin-top: 14px;
-    }
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 20px;
-      align-items: stretch;
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .contact-item {
-      padding: 14px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-    }
-
-    .cta-box {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(47,120,183,0.16), rgba(255,255,255,0.05));
-    }
-
-    .cta-box h3 {
-      font-size: 1.5rem;
-      margin: 0 0 12px;
-    }
-
-    .cta-box p {
-      color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    footer {
-      padding: 30px 0 46px;
-      color: #9eabc2;
-      font-size: 0.95rem;
-    }
-
-    .footer-inner {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .contact-wrap,
-      .about,
-      .product-strip,
-      .grid-3 {
-        grid-template-columns: 1fr;
-      }
-
-      .product-strip {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        width: 100%;
-        justify-content: space-between;
-      }
-
-      .nav-dropdown-menu {
-        left: 0;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero {
-        padding-top: 56px;
-      }
-
-      .nav-links {
-        gap: 14px;
-      }
-
-      .nav-dropdown-menu {
-        position: fixed;
-        top: 126px;
-        left: 16px;
-        right: 16px;
-        min-width: 0;
-      }
-
-      .product-actions {
-        width: 100%;
-        flex-direction: column;
-      }
-
-      h1 {
-        font-size: 2.4rem;
-      }
-
-      .mini-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-actions {
-        flex-direction: column;
-      }
-
-      .brand img {
-        width: 52px;
-        height: 52px;
-      }
-
-      .brand span {
-        font-size: 1.12rem;
-      }
-    }
-  </style>
+  <title>Selection AI | KI direkt im Arbeitsfluss</title>
+  <meta name="description" content="Selection AI bringt Zusammenfassungen, Übersetzungen, Recherche und eigene KI-Tools direkt an markierten Text und Screenshots.">
+  <link rel="stylesheet" href="site.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a href="#top" class="brand">
-        <img src="logo.png" alt="WaKriTech Logo">
-        <span>WaKriTech</span>
+  <header class="site-header">
+    <div class="site-container header-inner">
+      <a class="product-brand" href="index.html" aria-label="Selection AI Startseite">
+        <span class="product-mark" aria-hidden="true">AI</span>
+        <span class="product-name"><strong>Selection AI</strong><small>by WaKriTech</small></span>
       </a>
-
-      <nav class="nav-links">
-        <details class="nav-dropdown">
-          <summary>Selection AI <span class="nav-caret" aria-hidden="true"></span></summary>
-          <div class="nav-dropdown-menu">
-            <a href="#selection-ai">Übersicht</a>
-            <a href="pricing.html">Tarife</a>
-            <a href="download.html">Download</a>
-          </div>
-        </details>
-        <a href="#leistungen">Leistungen</a>
-        <a href="#ueber-uns">Über uns</a>
-        <a href="#kontakt">Kontakt</a>
+      <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="siteNav"><span></span><span></span><span></span></button>
+      <nav class="site-nav" id="siteNav" aria-label="Hauptnavigation">
+        <a href="#uebersicht" aria-current="page">Übersicht</a>
+        <a href="#funktionen">Funktionen</a>
+        <a href="pricing.html">Tarife</a>
+        <a href="download.html">Download</a>
+        <a href="#wakritech">WaKriTech</a>
+        <a class="nav-cta" href="pricing.html#konto">Kostenlos starten</a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
+  <main>
+    <section class="product-hero" id="uebersicht">
+      <img class="hero-background" src="selection-ai-history.png" alt="Selection AI mit Chatverlauf, Projekten und einer Zusammenfassung">
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="site-container hero-content">
+        <p class="kicker status-kicker"><span class="status-dot" aria-hidden="true"></span>Beta für macOS und Windows</p>
+        <h1>Selection AI</h1>
+        <p class="hero-title">KI direkt dort, wo du arbeitest.</p>
+        <p class="hero-copy">Text markieren, Rechtsklick machen und sofort zusammenfassen, übersetzen, recherchieren oder dein eigenes Unternehmens-Tool ausführen. Ohne Kopieren in ein separates Chatfenster.</p>
+        <div class="button-row">
+          <a class="button button-primary" href="download.html">App herunterladen</a>
+          <a class="button" href="#workflow">So funktioniert es</a>
+        </div>
+        <div class="hero-meta"><span>75 kostenlose Anfragen</span><span>Cloud-Synchronisierung</span><span>Eigene Tools</span></div>
+      </div>
+    </section>
+
+    <section class="section light-band" id="workflow">
+      <div class="site-container flow-grid">
+        <div class="flow-copy">
+          <p class="kicker">Im Arbeitsfluss</p>
+          <h2>Vom markierten Text direkt zum Ergebnis.</h2>
+          <p>Selection AI ergänzt das normale Kontextmenü um die Aktionen, die du tatsächlich brauchst. Der ausgewählte Inhalt bleibt sichtbar und das Ergebnis ist sofort bereit zum Kopieren oder Einfügen.</p>
+          <ol class="workflow-list">
+            <li><strong>01</strong><div><span>Text markieren</span><small>In Browsern, Mail, Dokumenten und vielen weiteren Apps.</small></div></li>
+            <li><strong>02</strong><div><span>Rechtsklick öffnen</span><small>Das normale Systemmenü bleibt erhalten.</small></div></li>
+            <li><strong>03</strong><div><span>KI-Aktion auswählen</span><small>Zusammenfassen, prüfen, recherchieren oder eigene Anweisung.</small></div></li>
+          </ol>
+        </div>
+        <figure class="flow-visual">
+          <img src="selection-ai-overlay.png" alt="Selection AI Rechtsklick-Fenster mit ausgewähltem Text und KI-Aktionen">
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="funktionen">
+      <div class="site-container">
+        <div class="section-heading">
+          <p class="kicker">Funktionen</p>
+          <h2>Für wiederkehrende Wissensarbeit gebaut.</h2>
+          <p>Selection AI verbindet schnelle Aktionen mit einem vollständigen Arbeitsbereich für Chats, Projekte und individuell definierte Werkzeuge.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-item"><span class="feature-number">01</span><h3>Text und Screenshots</h3><p>Markierte Inhalte und frei zugeschnittene Bildschirmbereiche mit denselben KI-Funktionen verarbeiten.</p></article>
+          <article class="feature-item"><span class="feature-number">02</span><h3>Aktuelle Recherche</h3><p>Informationen und Angebote im Web prüfen und Ergebnisse mit anklickbaren Quellen erhalten.</p></article>
+          <article class="feature-item"><span class="feature-number">03</span><h3>Eigene Tools</h3><p>Prompts, Namen, Beschreibungen, Icons und Farben passend zu den Abläufen deines Unternehmens festlegen.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-compact">
+      <div class="site-container">
+        <div class="section-heading">
+          <p class="kicker">Arbeitsbereich</p>
+          <h2>Mehr als ein kleines Rechtsklick-Menü.</h2>
+          <p>Alle Ergebnisse bleiben organisiert und lassen sich auf jedem angemeldeten Gerät weiterverwenden.</p>
+        </div>
+        <div class="showcase-grid">
+          <figure class="showcase-item">
+            <img src="selection-ai-history.png" alt="Selection AI Verlauf mit Projekten und geöffnetem Chat">
+            <figcaption class="showcase-copy"><h3>Chats, Projekte und Verlauf</h3><p>Unterhaltungen anpinnen, umbenennen, archivieren und thematisch in Projekten ordnen.</p></figcaption>
+          </figure>
+          <figure class="showcase-item">
+            <img src="selection-ai-tools.png" alt="Selection AI Toolpool mit Standardaktionen und eigenem Tool">
+            <figcaption class="showcase-copy"><h3>Toolpool und eigene Standards</h3><p>Schnellaktionen auswählen und wiederkehrende Unternehmens-Prompts dauerhaft hinterlegen.</p></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cloud-band">
+      <div class="site-container cloud-grid">
         <div>
-          <div class="eyebrow">Startup für smarte Tech-Lösungen</div>
-          <h1>Wir entwickeln Technik, die im Alltag wirklich weiterhilft.</h1>
-          <p>
-            WaKriTech steht für moderne technische Lösungen, die nicht nur gut aussehen,
-            sondern einen echten Zweck erfüllen. Ob digitale Produkte, smarte Prozesse
-            oder neue technische Ideen – wir wollen Lösungen entwickeln, die praktisch,
-            klar und zukunftsfähig sind.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#kontakt">Kontakt aufnehmen</a>
-            <a class="btn btn-secondary" href="#leistungen">Mehr erfahren</a>
-          </div>
-
-          <div class="hero-points">
-            <span>Digitale Lösungen</span>
-            <span>Smarte Prozesse</span>
-            <span>Technik mit Nutzen</span>
-          </div>
+          <p class="kicker">Zentral und kontrollierbar</p>
+          <h2>Ein Konto. Dieselben Werkzeuge auf jedem Gerät.</h2>
+          <p>Verlauf, Projekte, Tools und Einstellungen werden mit dem Selection-AI-Konto synchronisiert. Nutzer benötigen keinen eigenen OpenAI-Schlüssel.</p>
         </div>
-
-        <div class="hero-card">
-          <div class="logo-panel">
-            <div class="logo-frame">
-              <img src="logo.png" alt="WaKriTech Walter-Krisch Technologies Logo">
-            </div>
-          </div>
-
-          <div class="mini-grid">
-            <div class="mini-box">
-              <strong>Klar</strong>
-              <span>Technik verständlich gedacht und sauber umgesetzt.</span>
-            </div>
-            <div class="mini-box">
-              <strong>Modern</strong>
-              <span>Zeitgemäße Lösungen mit einem klaren digitalen Fokus.</span>
-            </div>
-            <div class="mini-box">
-              <strong>Flexibel</strong>
-              <span>Von ersten Ideen bis zu konkreten Prototypen.</span>
-            </div>
-            <div class="mini-box">
-              <strong>Praxisnah</strong>
-              <span>Lösungen, die im echten Einsatz funktionieren sollen.</span>
-            </div>
-          </div>
+        <div class="cloud-facts">
+          <div class="cloud-fact"><span class="cloud-check">✓</span><div><strong>Serverseitiger KI-Zugang</strong><small>Der zentrale Schlüssel wird nicht an die Desktop-App ausgeliefert.</small></div></div>
+          <div class="cloud-fact"><span class="cloud-check">✓</span><div><strong>Monatliche Nutzungslimits</strong><small>Anfragen, Tokens und Kosten werden pro Konto erfasst.</small></div></div>
+          <div class="cloud-fact"><span class="cloud-check">✓</span><div><strong>Personalisierter Toolpool</strong><small>Eigene Werkzeuge bleiben mit dem Konto verbunden.</small></div></div>
         </div>
       </div>
     </section>
 
-    <section id="selection-ai">
-      <div class="container">
-        <div class="section-head">
-          <h2>Selection AI</h2>
-          <p>
-            Eine Desktop-App für Unternehmen, die markierten Text, Screenshots und
-            wiederkehrende Wissensarbeit direkt dort unterstützt, wo gearbeitet wird.
-          </p>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">⌘</div>
-            <h3>KI im Kontextmenü</h3>
-            <p>
-              Text markieren, Rechtsklick machen und direkt zusammenfassen,
-              übersetzen, recherchieren oder eigene Unternehmens-Tools ausführen.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">▣</div>
-            <h3>Text und Screenshots</h3>
-            <p>
-              Neben Textauswahlen können auch Screenshots erfasst, zugeschnitten und
-              mit denselben KI-Aktionen verarbeitet werden.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">☁</div>
-            <h3>Zentral verwaltet</h3>
-            <p>
-              Konten, Tool-Auswahl, eigene Prompts und zentrale KI-Abrechnung laufen
-              über den Selection-AI-Dienst statt über einzelne API-Schlüssel.
-            </p>
-          </article>
-        </div>
-
-        <div class="product-strip card">
-          <div>
-            <strong>Selection AI</strong>
-            <span>Konten, Cloud-Synchronisierung und kontrollierte KI-Nutzung in einer App für macOS und Windows.</span>
-          </div>
-          <div class="product-actions">
-            <a class="btn btn-secondary" href="pricing.html">Tarife</a>
-            <a class="btn btn-primary" href="download.html">Download</a>
-          </div>
-        </div>
+    <section class="section-compact cta-band">
+      <div class="site-container cta-inner">
+        <div><h2>Selection AI kostenlos testen.</h2><p>Starte mit bis zu 75 KI-Anfragen pro Monat. Die aktuelle Beta steht für macOS mit Apple Chip und Windows 10/11 bereit.</p></div>
+        <div class="button-row"><a class="button button-primary" href="download.html">Download</a><a class="button" href="pricing.html">Tarife ansehen</a></div>
       </div>
     </section>
 
-    <section id="leistungen">
-      <div class="container">
-        <div class="section-head">
-          <h2>Woran WaKriTech arbeitet</h2>
-          <p>
-            Der Fokus liegt auf technischen Lösungen, die sinnvoll einsetzbar sind und
-            sich an echten Anforderungen orientieren.
-          </p>
+    <section class="section company-band" id="wakritech">
+      <div class="site-container company-grid">
+        <div class="company-brand">
+          <span class="company-mark" aria-hidden="true">W</span>
+          <div><strong>WaKriTech</strong><small>Walter-Krisch Technologies</small></div>
         </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="icon">⚙️</div>
-            <h3>Individuelle Lösungen</h3>
-            <p>
-              Entwicklung technischer Konzepte und digitaler Anwendungen, passend zu
-              konkreten Ideen, Abläufen und Zielen.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">💡</div>
-            <h3>Produktentwicklung</h3>
-            <p>
-              Unterstützung bei der Entwicklung neuer digitaler Produkte – von der
-              ersten Idee bis zu einer greifbaren Umsetzung.
-            </p>
-          </article>
-
-          <article class="card">
-            <div class="icon">🔗</div>
-            <h3>Automatisierung & Integration</h3>
-            <p>
-              Smarte Verknüpfung von Software, Prozessen und digitalen Abläufen, damit
-              Arbeitsschritte einfacher und effizienter werden.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="ueber-uns">
-      <div class="container">
-        <div class="section-head">
-          <h2>Über WaKriTech</h2>
-          <p>
-            WaKriTech – Walter-Krisch Technologies – ist als Startup mit dem Ziel
-            gestartet, technische Ideen in brauchbare und moderne Lösungen zu
-            verwandeln. Im Mittelpunkt steht nicht Technik um der Technik willen,
-            sondern ihr sinnvoller Einsatz.
-          </p>
-        </div>
-
-        <div class="about">
-          <div class="card">
-            <h3>Der Anspruch</h3>
-            <p>
-              Gute Technik sollte Probleme lösen, Abläufe vereinfachen und neue
-              Möglichkeiten schaffen. Deshalb setzt WaKriTech auf Lösungen mit klarer
-              Funktion, sauberer Struktur und echtem Mehrwert.
-            </p>
-            <p>
-              Wichtig ist dabei nicht nur, was technisch möglich ist, sondern was am
-              Ende auch wirklich sinnvoll nutzbar ist.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Die Richtung</h3>
-            <p>
-              WaKriTech soll Schritt für Schritt zu einer Marke für smarte und moderne
-              Technologielösungen wachsen. Der Fokus liegt auf digitalen Produkten,
-              technischen Konzepten und intelligenten Anwendungen mit Zukunft.
-            </p>
-            <p>
-              Diese Seite ist der erste Auftritt und die Grundlage für alles, was
-              daraus noch entstehen soll.
-            </p>
+        <div class="company-copy">
+          <p class="kicker">Hinter Selection AI</p>
+          <h2>Technik, die im Alltag wirklich weiterhilft.</h2>
+          <p>WaKriTech entwickelt digitale Produkte und technische Lösungen mit klarem praktischem Nutzen. Selection AI ist das erste eigene Produkt und bündelt diesen Anspruch in einer fokussierten Desktop-Anwendung.</p>
+          <a class="button button-light" href="mailto:info@wakritech.com">Kontakt aufnehmen</a>
+          <div class="company-values">
+            <div class="company-value"><strong>Klar</strong><span>Verständliche Funktionen statt unnötiger Komplexität.</span></div>
+            <div class="company-value"><strong>Praxisnah</strong><span>Entwickelt für echte wiederkehrende Arbeitsabläufe.</span></div>
+            <div class="company-value"><strong>Kontrollierbar</strong><span>Zentrale Konten, Werkzeuge und Nutzungsgrenzen.</span></div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section id="kontakt">
-      <div class="container contact-wrap">
-        <div class="card">
-          <div class="section-head">
-            <h2>Kontakt</h2>
-          </div>
-
-          <div class="contact-list">
-            <div class="contact-item"><strong>Projekt:</strong> WaKriTech – Walter-Krisch Technologies</div>
-            <div class="contact-item"><strong>Website:</strong> wakritech.com</div>
-            <div class="contact-item"><strong>E-Mail:</strong> info@wakritech.com</div>
-            <div class="contact-item"><strong>Status:</strong> Startup im Aufbau</div>
-          </div>
-        </div>
-
-        <aside class="card cta-box">
-          <h3>Kontaktieren Sie uns.</h3>
-          <p>
-            </p>
-          <a class="btn btn-primary" href="mailto:info@wakritech.com">E-Mail schreiben</a>
-        </aside>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <div>© 2026 WaKriTech – Walter-Krisch Technologies</div>
-      <div><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a> · <a href="widerruf.html">Vertrag widerrufen</a> · <a href="kuendigen.html">Verträge hier kündigen</a></div>
+  <footer class="site-footer">
+    <div class="site-container footer-inner">
+      <span>© 2026 WaKriTech · Selection AI</span>
+      <div class="footer-links"><a href="mailto:info@wakritech.com">Kontakt</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="widerruf.html">Widerruf</a><a href="kuendigen.html">Kündigen</a></div>
     </div>
   </footer>
-  <script>
-    const productMenu = document.querySelector(".nav-dropdown");
-    document.addEventListener("click", (event) => {
-      if (productMenu?.open && !productMenu.contains(event.target)) productMenu.open = false;
-    });
-    productMenu?.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => { productMenu.open = false; });
-    });
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>
