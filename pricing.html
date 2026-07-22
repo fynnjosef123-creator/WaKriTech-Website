@@ -260,8 +260,10 @@
     api("/v1/billing/plans", { method:"GET", auth:false }).then((result) => {
       billingMode = result.billingMode || "unconfigured";
       if (Array.isArray(result.plans) && result.plans.length) { plans = result.plans; renderPlans(); }
-      if (billingMode !== "live") {
-        noticeEl.textContent = "Die kostenpflichtigen Tarife werden gerade für den Live-Betrieb vorbereitet.";
+      if (!result.checkoutReady) {
+        noticeEl.textContent = billingMode === "live"
+          ? "Die kostenpflichtigen Tarife befinden sich in der finalen Freigabe. Kostenlose Konten können bereits genutzt werden."
+          : "Die kostenpflichtigen Tarife werden gerade für den Live-Betrieb vorbereitet.";
         noticeEl.classList.add("show");
       }
     }).catch(() => {
