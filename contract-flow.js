@@ -1,5 +1,5 @@
 (function () {
-  const API_URL = new URLSearchParams(window.location.search).get("api") || "https://selection-ai-api.onrender.com";
+  const API_URL = "https://selection-ai-api.onrender.com";
   const SESSION_KEY = "selection_ai_web_session";
 
   function readSession() {

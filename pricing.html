@@ -33,7 +33,7 @@
         <p class="kicker">Tarife</p>
         <h1>Einfach starten. Kontrolliert skalieren.</h1>
         <p>Jeder Tarif hat ein festes monatliches Nutzungslimit. So bleiben Kosten transparent und dein Selection-AI-Konto geschützt.</p>
-        <p class="legal-note">Die angezeigten Preise sind der aktuelle Planungsstand. Vor dem Verkaufsstart werden sie als Gesamtpreise einschließlich aller anfallenden Steuern ausgewiesen.</p>
+        <p class="legal-note" id="pricingLegalNote">Die angezeigten Preise sind der aktuelle Planungsstand. Vor dem Verkaufsstart werden sie als Gesamtpreise einschließlich aller anfallenden Steuern ausgewiesen.</p>
       </div>
     </section>
 
@@ -80,7 +80,8 @@
             <button id="portalButton" class="button" type="button">Abonnement verwalten</button>
             <button id="logoutButton" class="button" type="button">Abmelden</button>
           </div>
-          <label class="legal-consent"><input id="termsConsent" type="checkbox"><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a> und habe die <a href="widerruf.html" target="_blank">Widerrufsbelehrung</a> gelesen.</span></label>
+          <label class="legal-consent"><input id="termsConsent" type="checkbox"><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a>.</span></label>
+          <label class="legal-consent"><input id="withdrawalConsent" type="checkbox"><span>Ich habe die <a href="widerruf.html" target="_blank">Widerrufsbelehrung</a> und das Muster-Widerrufsformular gelesen.</span></label>
           <div id="status" class="status" aria-live="polite"></div>
         </div>
       </div>
@@ -93,9 +94,9 @@
   <script src="site.js"></script>
 
   <script>
-    const API_URL = new URLSearchParams(window.location.search).get("api")
-      || "https://selection-ai-api.onrender.com";
+    const API_URL = "https://selection-ai-api.onrender.com";
     const SESSION_KEY = "selection_ai_web_session";
+    const TERMS_VERSION = "2026-07-26";
     const fallbackPlans = [
       { id:"free", name:"Free", priceEurCents:0, monthlyRequestLimit:75, checkoutAvailable:true },
       { id:"starter", name:"Starter", priceEurCents:990, monthlyRequestLimit:1000, checkoutAvailable:false },
@@ -104,6 +105,7 @@
     ];
     let plans = fallbackPlans;
     let billingMode = "unconfigured";
+    let checkoutTermsVersion = TERMS_VERSION;
     let pendingPlanId = "";
 
     const statusEl = document.getElementById("status");
@@ -174,13 +176,21 @@
     }
 
     async function startCheckout(planId) {
-      if (!document.getElementById("termsConsent").checked) {
+      if (!document.getElementById("termsConsent").checked || !document.getElementById("withdrawalConsent").checked) {
         setStatus("Bitte akzeptiere vor dem Checkout die AGB und bestätige die Widerrufsbelehrung.", "error");
         return;
       }
       setStatus("Sicherer Checkout wird geöffnet ...");
       try {
-        const result = await api("/v1/billing/checkout", { method:"POST", body:JSON.stringify({ planId }) });
+        const result = await api("/v1/billing/checkout", {
+          method:"POST",
+          body:JSON.stringify({
+            planId,
+            termsAccepted:true,
+            withdrawalAcknowledged:true,
+            termsVersion:checkoutTermsVersion
+          })
+        });
         window.location.assign(result.url);
       } catch (error) {
         setStatus(error.message, "error");
@@ -227,18 +237,22 @@
     document.getElementById("logoutButton").addEventListener("click", () => { setSession(null); pendingPlanId = ""; setStatus("Abgemeldet."); });
 
     const query = new URLSearchParams(location.search);
+    if (query.get("plan")) pendingPlanId = query.get("plan");
     if (query.get("checkout") === "cancelled") { noticeEl.textContent = "Der Checkout wurde abgebrochen. Es wurde kein Tarif geändert."; noticeEl.classList.add("show"); }
     if (query.get("portal") === "returned") { noticeEl.textContent = "Änderungen aus dem Kundenportal werden automatisch mit Selection AI synchronisiert."; noticeEl.classList.add("show"); }
 
     renderAccount(); renderPlans();
     api("/v1/billing/plans", { method:"GET", auth:false }).then((result) => {
       billingMode = result.billingMode || "unconfigured";
+      checkoutTermsVersion = result.checkoutTermsVersion || TERMS_VERSION;
       if (Array.isArray(result.plans) && result.plans.length) { plans = result.plans; renderPlans(); }
       if (!result.checkoutReady) {
         noticeEl.textContent = billingMode === "live"
           ? "Die kostenpflichtigen Tarife befinden sich in der finalen Freigabe. Kostenlose Konten können bereits genutzt werden."
           : "Die kostenpflichtigen Tarife werden gerade für den Live-Betrieb vorbereitet.";
         noticeEl.classList.add("show");
+      } else {
+        document.getElementById("pricingLegalNote").textContent = "Alle Preise sind monatliche Gesamtpreise. Maßgeblich sind die unmittelbar vor der Bestellung im Stripe Checkout angezeigten Vertrags- und Steuerinformationen.";
       }
     }).catch(() => {
       noticeEl.textContent = "Die Tarifdaten sind gerade nicht erreichbar. Bitte versuche es später erneut."; noticeEl.classList.add("show");

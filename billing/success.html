@@ -24,8 +24,7 @@
     <a href="/pricing.html">Zu den Tarifen</a>
   </main>
   <script>
-    const API_URL = new URLSearchParams(window.location.search).get("api")
-      || "https://selection-ai-api.onrender.com";
+    const API_URL = "https://selection-ai-api.onrender.com";
     const sessionId = new URLSearchParams(location.search).get("session_id") || "";
     let session = null;
     try { session = JSON.parse(sessionStorage.getItem("selection_ai_web_session") || "null"); } catch {}
