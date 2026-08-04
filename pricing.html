@@ -82,8 +82,10 @@
             <button id="portalButton" class="button" type="button">Abonnement verwalten</button>
             <button id="logoutButton" class="button" type="button">Abmelden</button>
           </div>
-          <label class="legal-consent"><input id="termsConsent" type="checkbox"><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a>.</span></label>
-          <label class="legal-consent"><input id="withdrawalConsent" type="checkbox"><span>Ich habe die <a href="widerruf.html" target="_blank">Widerrufsbelehrung</a> und das Muster-Widerrufsformular gelesen.</span></label>
+          <div id="checkoutConsent" class="hidden">
+            <label class="legal-consent"><input id="termsConsent" type="checkbox"><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a> für den kostenpflichtigen Vertrag.</span></label>
+            <label class="legal-consent"><input id="withdrawalConsent" type="checkbox"><span>Ich habe die <a href="widerruf.html" target="_blank">Widerrufsbelehrung</a> und das Muster-Widerrufsformular gelesen.</span></label>
+          </div>
           <div id="status" class="status" aria-live="polite"></div>
         </div>
       </div>
@@ -169,6 +171,7 @@
       const session = getSession();
       document.getElementById("authForms").classList.toggle("hidden", Boolean(session?.token));
       document.getElementById("signedIn").classList.toggle("hidden", !session?.token);
+      document.getElementById("checkoutConsent").classList.toggle("hidden", !session?.token);
       document.getElementById("signedInName").textContent = session?.user?.name || "Angemeldet";
       document.getElementById("signedInEmail").textContent = session?.user?.email || "";
     }
