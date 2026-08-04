@@ -180,6 +180,25 @@ button { color: inherit; }
 .first-start-step h3 { margin: 3px 0 8px; font-size: 17px; }
 .first-start-step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 .first-start-result { margin: 18px 0 0; color: var(--text); font-size: 14px; }
+.windows-start-guide { border-bottom: 1px solid var(--line); }
+.windows-start-layout { display: grid; grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.1fr); gap: 44px; align-items: center; }
+.windows-smart-screen { margin: 0; overflow: hidden; border: 1px solid #596678; border-radius: 8px; background: #111722; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22); }
+.windows-smart-screen-bar { display: flex; gap: 6px; padding: 11px 13px; border-bottom: 1px solid #344153; background: #1a2331; }
+.windows-smart-screen-bar span { width: 8px; height: 8px; border-radius: 50%; background: #65748a; }
+.windows-smart-screen-body { padding: 30px; text-align: center; }
+.windows-shield { display: grid; place-items: center; width: 44px; height: 52px; margin: 0 auto 16px; clip-path: polygon(50% 0, 92% 16%, 86% 68%, 50% 100%, 14% 68%, 8% 16%); background: #3a8ced; color: white; font-size: 23px; font-weight: 800; }
+.windows-smart-screen-body p { margin: 0 0 10px; color: #f4f7fb; font-size: 20px; font-weight: 750; }
+.windows-smart-screen-body small { color: #aab6c7; line-height: 1.55; }
+.windows-smart-screen-actions { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 24px; font-size: 12px; }
+.windows-smart-screen-actions span { color: #91c4ff; }
+.windows-smart-screen-actions strong { padding: 9px 12px; border: 1px solid #6dafff; background: #2d7bd5; color: white; }
+.windows-smart-screen figcaption { padding: 12px 16px; border-top: 1px solid #344153; color: #aab6c7; font-size: 12px; text-align: center; }
+.windows-start-steps { display: grid; gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.windows-start-steps article { display: flex; gap: 16px; padding: 20px 0; }
+.windows-start-steps article + article { border-top: 1px solid var(--line); }
+.windows-start-steps article > span { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border: 1px solid var(--blue); color: var(--blue); font-size: 13px; font-weight: 800; }
+.windows-start-steps h3 { margin: 3px 0 7px; font-size: 17px; }
+.windows-start-steps p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
 
 .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .plan { min-width: 0; display: flex; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
@@ -251,6 +270,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .flow-visual { padding: 12px 12px 12px 28px; }
   .company-logo-frame { margin-bottom: 32px; }
   .showcase-grid, .download-grid, .install-grid, .first-start-steps, .plans, .company-values { grid-template-columns: 1fr; }
+  .windows-start-layout { grid-template-columns: 1fr; gap: 28px; }
   .company-hero { min-height: 560px; padding: 54px 0; }
   .install-step { padding: 22px 0; }
   .install-step + .install-step { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
