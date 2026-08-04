@@ -119,6 +119,15 @@ button { color: inherit; }
 .cloud-fact strong { display: block; font-size: 14px; }
 .cloud-fact small { color: #aebcd0; font-size: 13px; }
 
+.faq-heading { margin-bottom: 24px; }
+.faq-list { border-top: 1px solid var(--line); }
+.faq-item { border-bottom: 1px solid var(--line); }
+.faq-item summary { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 2px; font-size: 17px; font-weight: 720; cursor: pointer; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; flex: 0 0 auto; color: var(--blue); font-size: 25px; font-weight: 400; line-height: 1; }
+.faq-item[open] summary::after { content: "−"; }
+.faq-item p { max-width: 760px; margin: -4px 0 22px; color: var(--muted); font-size: 15px; }
+
 .cta-band { border-bottom: 1px solid var(--line); }
 .cta-inner { display: flex; align-items: center; justify-content: space-between; gap: 48px; }
 .cta-inner h2 { margin: 0 0 8px; font-size: clamp(28px, 4vw, 42px); }
@@ -283,6 +292,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .hero-title { font-size: 28px; }
   .hero-copy { font-size: 16px; }
   .hero-meta { display: grid; gap: 7px; margin-top: 22px; }
+  .faq-item summary { min-height: 62px; font-size: 15px; }
   .flow-visual { padding: 12px 12px 12px 28px; }
   .company-logo-frame { margin-bottom: 32px; }
   .showcase-grid, .download-grid, .install-grid, .macos-guide-visuals, .first-start-steps, .plans, .company-values { grid-template-columns: 1fr; }
