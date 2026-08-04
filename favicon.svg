@@ -3,7 +3,7 @@
   <rect x="1" y="1" width="62" height="62" rx="11" fill="none" stroke="#334155" stroke-width="2"/>
   <text x="10" y="40" fill="#4f8cc0" font-family="Arial, sans-serif" font-size="27" font-weight="800">W</text>
   <text x="33" y="40" fill="#c4cbd5" font-family="Arial, sans-serif" font-size="27" font-weight="800">K</text>
-  <path d="M13 48h13" stroke="#3f7eb4" stroke-width="3" stroke-linecap="round"/>
-  <path d="M29 48h12" stroke="#b8becb" stroke-width="3" stroke-linecap="round"/>
-  <path d="M44 48h7" stroke="#3c3f45" stroke-width="3" stroke-linecap="round"/>
+  <path d="M12 48h11" stroke="#3f7eb4" stroke-width="3" stroke-linecap="round"/>
+  <path d="M27 48h11" stroke="#b8becb" stroke-width="3" stroke-linecap="round"/>
+  <path d="M42 48h11" stroke="#3c3f45" stroke-width="3" stroke-linecap="round"/>
 </svg>
