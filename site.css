@@ -42,7 +42,7 @@ button { color: inherit; }
 
 .site-header { position: sticky; top: 0; z-index: 50; height: var(--header-height); border-bottom: 1px solid var(--line-soft); background: rgba(10, 14, 20, 0.94); backdrop-filter: blur(16px); }
 .header-inner { min-height: var(--header-height); display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.product-brand { min-width: 0; display: flex; align-items: center; gap: 18px; }
+.product-brand { min-width: 0; display: flex; align-items: center; gap: 4px; }
 .product-mark { width: 171px; height: 58px; flex: 0 0 171px; object-fit: contain; object-position: left center; }
 .product-name { min-width: 0; display: grid; line-height: 1.08; }
 .product-name strong { font-size: 15px; }
@@ -271,7 +271,7 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
 @media (max-width: 700px) {
   :root { --header-height: 64px; }
   .site-container { width: min(100% - 28px, var(--max)); }
-  .product-brand { gap: 10px; }
+  .product-brand { gap: 4px; }
   .product-mark { width: 136px; height: 46px; flex-basis: 136px; }
   .product-name strong { font-size: 13px; }
   .section { padding: 68px 0; }
