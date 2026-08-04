@@ -179,9 +179,10 @@ button { color: inherit; }
 .macos-guide-visual { position: relative; min-width: 0; margin: 0; }
 .macos-guide-visual img { display: block; width: 100%; border-radius: 10px; background: var(--paper); box-shadow: 0 20px 48px rgba(0, 0, 0, .32), 0 0 0 1px rgba(177, 193, 213, .16); }
 .macos-guide-visual:first-child { transform: translateY(-14px); }
-.macos-open-marker { position: absolute; z-index: 1; top: 54%; left: 84%; width: 12%; height: 6%; border: 2px solid #74a9ff; border-radius: 8px; box-shadow: 0 0 0 4px rgba(84, 145, 255, .2), 0 8px 20px rgba(0, 0, 0, .32); pointer-events: none; }
-.macos-open-marker span { position: absolute; right: -7px; bottom: calc(100% + 10px); padding: 5px 8px; border-radius: 5px; background: var(--blue); color: white; font-size: 11px; font-weight: 800; line-height: 1; white-space: nowrap; box-shadow: 0 5px 16px rgba(0, 0, 0, .28); }
-.macos-open-marker span::after { content: ""; position: absolute; right: 13px; top: 100%; border: 5px solid transparent; border-top-color: var(--blue); }
+.macos-open-marker { position: absolute; z-index: 1; top: 43.5%; left: 90%; width: 3px; height: 64px; border-radius: 3px; background: #74a9ff; box-shadow: 0 0 14px rgba(84, 145, 255, .68); pointer-events: none; }
+.macos-open-marker::before { content: ""; position: absolute; top: -7px; left: -5px; width: 13px; height: 13px; border: 2px solid #dce9ff; border-radius: 50%; background: #4285ed; box-shadow: 0 0 0 4px rgba(84, 145, 255, .18); }
+.macos-open-marker::after { content: ""; position: absolute; left: -6px; bottom: -3px; border: 8px solid transparent; border-top: 11px solid #74a9ff; }
+.macos-open-marker span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .macos-guide-visual figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .macos-guide-visual figcaption span { margin-right: 6px; color: var(--blue); font-size: 11px; font-weight: 850; text-transform: uppercase; }
 .first-start-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
