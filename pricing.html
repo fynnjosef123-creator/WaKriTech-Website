@@ -33,7 +33,7 @@
         <p class="kicker">Tarife</p>
         <h1>Einfach starten. Kontrolliert skalieren.</h1>
         <p>Jeder Tarif hat ein festes monatliches Nutzungslimit. So bleiben Kosten transparent und dein Selection-AI-Konto geschützt.</p>
-        <p class="legal-note" id="pricingLegalNote">Die angezeigten Preise sind der aktuelle Planungsstand. Vor dem Verkaufsstart werden sie als Gesamtpreise einschließlich aller anfallenden Steuern ausgewiesen.</p>
+        <p class="legal-note" id="pricingLegalNote">Alle Preise sind monatliche Gesamtpreise. Als Kleinunternehmer im Sinne von § 19 UStG weist WaKriTech keine Umsatzsteuer aus.</p>
       </div>
     </section>
 
@@ -252,7 +252,7 @@
           : "Die kostenpflichtigen Tarife werden gerade für den Live-Betrieb vorbereitet.";
         noticeEl.classList.add("show");
       } else {
-        document.getElementById("pricingLegalNote").textContent = "Alle Preise sind monatliche Gesamtpreise. Maßgeblich sind die unmittelbar vor der Bestellung im Stripe Checkout angezeigten Vertrags- und Steuerinformationen.";
+        document.getElementById("pricingLegalNote").textContent = "Alle Preise sind monatliche Gesamtpreise. Als Kleinunternehmer im Sinne von § 19 UStG weist WaKriTech keine Umsatzsteuer aus.";
       }
     }).catch(() => {
       noticeEl.textContent = "Die Tarifdaten sind gerade nicht erreichbar. Bitte versuche es später erneut."; noticeEl.classList.add("show");
