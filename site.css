@@ -175,9 +175,10 @@ button { color: inherit; }
 .install-step p { margin: 0; color: var(--muted); font-size: 14px; }
 .beta-notice { margin-top: 34px; padding: 17px 18px; border-left: 3px solid var(--amber); background: #1d1a13; color: #d8cfbd; font-size: 14px; }
 .first-start-guide { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
-.macos-guide-visuals { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin: 0 0 34px; }
+.macos-guide-visuals { display: grid; grid-template-columns: minmax(260px, .62fr) minmax(0, 1.38fr); align-items: center; gap: 42px; max-width: 1120px; margin: 0 auto 34px; }
 .macos-guide-visual { min-width: 0; margin: 0; }
-.macos-guide-visual img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.macos-guide-visual img { display: block; width: 100%; border-radius: 10px; background: var(--paper); box-shadow: 0 20px 48px rgba(0, 0, 0, .32), 0 0 0 1px rgba(177, 193, 213, .16); }
+.macos-guide-visual:first-child { transform: translateY(-14px); }
 .macos-guide-visual figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .macos-guide-visual figcaption span { margin-right: 6px; color: var(--blue); font-size: 11px; font-weight: 850; text-transform: uppercase; }
 .first-start-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -283,6 +284,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .install-step + .install-step { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
   .first-start-step { padding: 20px 0; }
   .first-start-step + .first-start-step { border-left: 0; border-top: 1px solid var(--line); }
+  .macos-guide-visuals { gap: 26px; }
+  .macos-guide-visual:first-child { width: min(82%, 430px); justify-self: center; transform: none; }
   .cta-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
   .cta-inner { gap: 24px; }
   .footer-inner { justify-content: center; padding: 20px 0; }
