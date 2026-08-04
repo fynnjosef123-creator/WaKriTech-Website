@@ -96,12 +96,12 @@
   <script>
     const API_URL = "https://selection-ai-api.onrender.com";
     const SESSION_KEY = "selection_ai_web_session";
-    const TERMS_VERSION = "2026-07-26";
+    const TERMS_VERSION = "2026-08-04";
     const fallbackPlans = [
       { id:"free", name:"Free", priceEurCents:0, monthlyRequestLimit:75, checkoutAvailable:true },
-      { id:"starter", name:"Starter", priceEurCents:990, monthlyRequestLimit:1000, checkoutAvailable:false },
-      { id:"pro", name:"Pro", priceEurCents:1990, monthlyRequestLimit:4000, checkoutAvailable:false },
-      { id:"business", name:"Business", priceEurCents:3990, monthlyRequestLimit:10000, checkoutAvailable:false }
+      { id:"starter", name:"Schüler & Studierende", priceEurCents:499, monthlyRequestLimit:500, checkoutAvailable:false },
+      { id:"pro", name:"Pro", priceEurCents:1299, monthlyRequestLimit:2000, checkoutAvailable:false },
+      { id:"business", name:"Business", priceEurCents:2999, monthlyRequestLimit:5000, checkoutAvailable:false }
     ];
     let plans = fallbackPlans;
     let billingMode = "unconfigured";
@@ -137,6 +137,9 @@
 
     function planFeatures(plan) {
       const shared = ["Text, Chat und Screenshots", "Eigene Tools und Cloud-Synchronisierung"];
+      if (plan.id === "starter") shared.unshift("Für Schule, Studium und den persönlichen Einsatz");
+      if (plan.id === "pro") shared.unshift("Für regelmäßige KI-Arbeit");
+      if (plan.id === "business") shared.unshift("Für Teams und intensive Wissensarbeit");
       return [`${new Intl.NumberFormat("de-DE").format(plan.monthlyRequestLimit)} KI-Anfragen pro Monat`, ...shared];
     }
 
