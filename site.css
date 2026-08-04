@@ -169,6 +169,17 @@ button { color: inherit; }
 .install-step h3 { margin: 22px 0 7px; font-size: 18px; }
 .install-step p { margin: 0; color: var(--muted); font-size: 14px; }
 .beta-notice { margin-top: 34px; padding: 17px 18px; border-left: 3px solid var(--amber); background: #1d1a13; color: #d8cfbd; font-size: 14px; }
+.first-start-guide { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
+.first-start-visual { width: min(100%, 520px); margin: 0 auto 34px; }
+.first-start-visual img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; background: var(--paper); }
+.first-start-visual figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; text-align: center; }
+.first-start-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.first-start-step { display: flex; gap: 16px; padding: 24px; min-width: 0; }
+.first-start-step + .first-start-step { border-left: 1px solid var(--line); }
+.first-start-step > span { display: grid; place-items: center; width: 30px; height: 30px; flex: 0 0 30px; border: 1px solid var(--blue); color: var(--blue); font-size: 13px; font-weight: 800; }
+.first-start-step h3 { margin: 3px 0 8px; font-size: 17px; }
+.first-start-step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+.first-start-result { margin: 18px 0 0; color: var(--text); font-size: 14px; }
 
 .plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .plan { min-width: 0; display: flex; flex-direction: column; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
@@ -239,10 +250,12 @@ input:focus, select:focus, textarea:focus { border-color: var(--blue); box-shado
   .hero-meta { display: grid; gap: 7px; margin-top: 22px; }
   .flow-visual { padding: 12px 12px 12px 28px; }
   .company-logo-frame { margin-bottom: 32px; }
-  .showcase-grid, .download-grid, .install-grid, .plans, .company-values { grid-template-columns: 1fr; }
+  .showcase-grid, .download-grid, .install-grid, .first-start-steps, .plans, .company-values { grid-template-columns: 1fr; }
   .company-hero { min-height: 560px; padding: 54px 0; }
   .install-step { padding: 22px 0; }
   .install-step + .install-step { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .first-start-step { padding: 20px 0; }
+  .first-start-step + .first-start-step { border-left: 0; border-top: 1px solid var(--line); }
   .cta-inner, .footer-inner { align-items: flex-start; flex-direction: column; }
   .cta-inner { gap: 24px; }
   .footer-inner { justify-content: center; padding: 20px 0; }
