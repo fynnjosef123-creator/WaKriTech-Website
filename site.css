@@ -102,6 +102,9 @@ button { color: inherit; }
 .showcase-grid { display: grid; grid-template-columns: 1fr; gap: 34px; }
 .showcase-item { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
 .showcase-item img { width: 100%; height: auto; object-fit: contain; object-position: top left; border-bottom: 1px solid var(--line); }
+.showcase-visual { position: relative; }
+.showcase-visual img { display: block; }
+.tool-help-dot { position: absolute; left: 64.7%; top: 33.9%; width: max(4px, .58%); aspect-ratio: 1; border-radius: 50%; background: #98baff; box-shadow: 0 0 0 1px #1d2d45; transform: translate(-50%, -50%); }
 .showcase-copy { padding: 22px; }
 .showcase-copy h3 { margin: 0 0 7px; font-size: 19px; }
 .showcase-copy p { margin: 0; color: var(--muted); font-size: 14px; }
