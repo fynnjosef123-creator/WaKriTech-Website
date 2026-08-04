@@ -176,9 +176,12 @@ button { color: inherit; }
 .beta-notice { margin-top: 34px; padding: 17px 18px; border-left: 3px solid var(--amber); background: #1d1a13; color: #d8cfbd; font-size: 14px; }
 .first-start-guide { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); }
 .macos-guide-visuals { display: grid; grid-template-columns: minmax(260px, .62fr) minmax(0, 1.38fr); align-items: center; gap: 42px; max-width: 1120px; margin: 0 auto 34px; }
-.macos-guide-visual { min-width: 0; margin: 0; }
+.macos-guide-visual { position: relative; min-width: 0; margin: 0; }
 .macos-guide-visual img { display: block; width: 100%; border-radius: 10px; background: var(--paper); box-shadow: 0 20px 48px rgba(0, 0, 0, .32), 0 0 0 1px rgba(177, 193, 213, .16); }
 .macos-guide-visual:first-child { transform: translateY(-14px); }
+.macos-open-marker { position: absolute; z-index: 1; top: 54%; left: 84%; width: 12%; height: 6%; border: 2px solid #74a9ff; border-radius: 8px; box-shadow: 0 0 0 4px rgba(84, 145, 255, .2), 0 8px 20px rgba(0, 0, 0, .32); pointer-events: none; }
+.macos-open-marker span { position: absolute; right: -7px; bottom: calc(100% + 10px); padding: 5px 8px; border-radius: 5px; background: var(--blue); color: white; font-size: 11px; font-weight: 800; line-height: 1; white-space: nowrap; box-shadow: 0 5px 16px rgba(0, 0, 0, .28); }
+.macos-open-marker span::after { content: ""; position: absolute; right: 13px; top: 100%; border: 5px solid transparent; border-top-color: var(--blue); }
 .macos-guide-visual figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; line-height: 1.45; }
 .macos-guide-visual figcaption span { margin-right: 6px; color: var(--blue); font-size: 11px; font-weight: 850; text-transform: uppercase; }
 .first-start-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
