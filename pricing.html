@@ -71,6 +71,8 @@
               <label>Geburtsdatum<input name="birthDate" type="date" required></label>
               <label>E-Mail<input name="email" type="email" autocomplete="email" required></label>
               <label>Passwort<input name="password" type="password" autocomplete="new-password" minlength="12" required></label>
+              <label class="legal-consent"><input name="termsAccepted" type="checkbox" required><span>Ich akzeptiere die <a href="agb.html" target="_blank">AGB</a>.</span></label>
+              <label class="legal-consent"><input name="privacyAcknowledged" type="checkbox" required><span>Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzerklärung</a> gelesen.</span></label>
               <button class="button button-primary" type="submit">Konto erstellen</button>
             </form>
           </div>
@@ -222,6 +224,8 @@
     document.getElementById("registerForm").addEventListener("submit", async (event) => {
       event.preventDefault(); setStatus("Konto wird erstellt ...");
       const data = Object.fromEntries(new FormData(event.currentTarget));
+      data.termsAccepted = data.termsAccepted === "on";
+      data.privacyAcknowledged = data.privacyAcknowledged === "on";
       try {
         const result = await api("/v1/auth/register", { method:"POST", auth:false, body:JSON.stringify(data) });
         if (result.needsEmailConfirmation) {
