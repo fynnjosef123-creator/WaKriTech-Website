@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Selection AI Abonnement | WaKriTech</title>
+  <title>SelectClick AI Abonnement | WaKriTech</title>
   <style>
     :root { color-scheme:dark; --bg:#0c1118; --panel:#111923; --line:#2a3544; --ink:#f4f7fb; --muted:#a7b2c2; --accent:#6ea2ff; --success:#48c78e; }
     * { box-sizing:border-box; } body { min-height:100vh; display:grid; place-items:center; margin:0; padding:24px; background:var(--bg); color:var(--ink); font:15px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif; }
@@ -19,7 +19,7 @@
   <main>
     <div class="mark">AI</div>
     <h1 id="title">Zahlung wird bestätigt</h1>
-    <p>Selection AI prüft den Status direkt bei Stripe. Erst danach wird der Tarif für dein Konto freigeschaltet.</p>
+    <p>SelectClick AI prüft den Status direkt bei Stripe. Erst danach wird der Tarif für dein Konto freigeschaltet.</p>
     <div id="status" class="status">Bitte einen Moment warten ...</div>
     <a href="/pricing.html">Zu den Tarifen</a>
   </main>
@@ -27,14 +27,17 @@
     const API_URL = "https://selection-ai-api.onrender.com";
     const sessionId = new URLSearchParams(location.search).get("session_id") || "";
     let session = null;
-    try { session = JSON.parse(sessionStorage.getItem("selection_ai_web_session") || "null"); } catch {}
+    try {
+      const raw = sessionStorage.getItem("selectclick_ai_web_session") || sessionStorage.getItem("selection_ai_web_session");
+      session = JSON.parse(raw || "null");
+    } catch {}
     const statusEl = document.getElementById("status");
     const titleEl = document.getElementById("title");
 
     async function verify() {
       if (!session?.token || !sessionId) {
         titleEl.textContent = "Checkout abgeschlossen";
-        statusEl.textContent = "Öffne Selection AI und aktualisiere unter Einstellungen > Abo & Nutzung. Der Tarif wird automatisch synchronisiert.";
+        statusEl.textContent = "Öffne SelectClick AI und aktualisiere unter Einstellungen > Abo & Nutzung. Der Tarif wird automatisch synchronisiert.";
         return;
       }
       for (let attempt = 0; attempt < 10; attempt += 1) {
@@ -56,7 +59,7 @@
         await new Promise((resolve) => setTimeout(resolve, 2500));
       }
       titleEl.textContent = "Bestätigung läuft noch";
-      statusEl.textContent = "Stripe verarbeitet das Abonnement noch. Selection AI aktualisiert den Tarif automatisch.";
+      statusEl.textContent = "Stripe verarbeitet das Abonnement noch. SelectClick AI aktualisiert den Tarif automatisch.";
     }
     verify();
   </script>

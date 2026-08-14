@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Selection AI Tarife | WaKriTech</title>
-  <meta name="description" content="Selection AI Tarife vergleichen, Konto anmelden und Abonnement sicher über Stripe abschließen.">
+  <title>SelectClick AI Tarife | WaKriTech</title>
+  <meta name="description" content="SelectClick AI Tarife vergleichen, Konto anmelden und Abonnement sicher über Stripe abschließen.">
   <link rel="canonical" href="https://wakritech.com/pricing.html">
   <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="apple-touch-icon" href="/favicon.png">
@@ -13,9 +13,9 @@
 <body>
   <header class="site-header">
     <div class="site-container header-inner">
-      <a class="product-brand" href="/index.html" aria-label="Selection AI Startseite">
+      <a class="product-brand" href="/index.html" aria-label="SelectClick AI Startseite">
         <img class="product-mark" src="logo-transparent.png?v=wakritech-header-1" alt="WaKriTech" aria-hidden="true">
-        <span class="product-name"><strong>Selection AI</strong><small>by WaKriTech</small></span>
+        <span class="product-name"><strong>SelectClick AI</strong><small>by WaKriTech</small></span>
       </a>
       <button class="nav-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="siteNav"><span></span><span></span><span></span></button>
       <nav class="site-nav" id="siteNav" aria-label="Hauptnavigation">
@@ -34,7 +34,7 @@
       <div class="site-container">
         <p class="kicker">Tarife</p>
         <h1>Einfach starten. Kontrolliert skalieren.</h1>
-        <p>Jeder Tarif hat ein festes monatliches Nutzungslimit. So bleiben Kosten transparent und dein Selection-AI-Konto geschützt.</p>
+        <p>Jeder Tarif hat ein festes monatliches Nutzungslimit. So bleiben Kosten transparent und dein SelectClick-AI-Konto geschützt.</p>
         <p class="legal-note" id="pricingLegalNote">Alle Preise sind monatliche Gesamtpreise. Als Kleinunternehmer im Sinne von § 19 UStG weist WaKriTech keine Umsatzsteuer aus.</p>
       </div>
     </section>
@@ -42,16 +42,16 @@
     <section class="section-compact">
       <div class="site-container">
         <div id="pageNotice" class="pricing-notice" role="status"></div>
-        <section id="plans" class="plans" aria-label="Selection AI Tarife"></section>
+        <section id="plans" class="plans" aria-label="SelectClick AI Tarife"></section>
       </div>
     </section>
 
     <section class="section-compact" id="konto">
       <div class="site-container account">
         <div class="account-copy">
-          <p class="kicker">Selection AI Konto</p>
+          <p class="kicker">SelectClick AI Konto</p>
           <h2>Ein Konto für App, Verlauf und Abonnement.</h2>
-          <p>Melde dich mit deinem Selection-AI-Konto an. Der Checkout läuft anschließend auf einer sicheren Stripe-Seite. Zahlungsdaten werden nicht bei WaKriTech gespeichert.</p>
+          <p>Melde dich mit deinem SelectClick-AI-Konto an. Der Checkout läuft anschließend auf einer sicheren Stripe-Seite. Zahlungsdaten werden nicht bei WaKriTech gespeichert.</p>
         </div>
 
         <div class="account-panel">
@@ -95,13 +95,14 @@
   </main>
 
   <footer class="site-footer">
-    <div class="site-container footer-inner"><span>© 2026 WaKriTech · Selection AI</span><div class="footer-links"><a href="wakritech.html">WaKriTech</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="widerruf.html">Widerruf</a><a href="kuendigen.html">Kündigen</a></div></div>
+    <div class="site-container footer-inner"><span>© 2026 WaKriTech · SelectClick AI</span><div class="footer-links"><a href="wakritech.html">WaKriTech</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="widerruf.html">Widerruf</a><a href="kuendigen.html">Kündigen</a></div></div>
   </footer>
   <script src="site.js"></script>
 
   <script>
     const API_URL = "https://selection-ai-api.onrender.com";
-    const SESSION_KEY = "selection_ai_web_session";
+    const SESSION_KEY = "selectclick_ai_web_session";
+    const LEGACY_SESSION_KEY = "selection_ai_web_session";
     const TERMS_VERSION = "2026-08-04";
     const fallbackPlans = [
       { id:"free", name:"Free", priceEurCents:0, monthlyRequestLimit:50, checkoutAvailable:true },
@@ -118,7 +119,10 @@
     const noticeEl = document.getElementById("pageNotice");
 
     function getSession() {
-      try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"); } catch { return null; }
+      try {
+        const raw = sessionStorage.getItem(SESSION_KEY) || sessionStorage.getItem(LEGACY_SESSION_KEY);
+        return JSON.parse(raw || "null");
+      } catch { return null; }
     }
     function setSession(value) {
       value ? sessionStorage.setItem(SESSION_KEY, JSON.stringify(value)) : sessionStorage.removeItem(SESSION_KEY);
@@ -179,7 +183,7 @@
     }
 
     async function choosePlan(planId) {
-      if (planId === "free") { document.getElementById("konto").scrollIntoView(); setStatus("Melde dich an oder erstelle ein Konto, um Selection AI zu nutzen."); return; }
+      if (planId === "free") { document.getElementById("konto").scrollIntoView(); setStatus("Melde dich an oder erstelle ein Konto, um SelectClick AI zu nutzen."); return; }
       pendingPlanId = planId;
       if (!getSession()?.token) { document.getElementById("konto").scrollIntoView(); setStatus("Melde dich an, danach öffnen wir direkt den gewählten Tarif."); return; }
       await startCheckout(planId);
@@ -251,7 +255,7 @@
     const query = new URLSearchParams(location.search);
     if (query.get("plan")) pendingPlanId = query.get("plan");
     if (query.get("checkout") === "cancelled") { noticeEl.textContent = "Der Checkout wurde abgebrochen. Es wurde kein Tarif geändert."; noticeEl.classList.add("show"); }
-    if (query.get("portal") === "returned") { noticeEl.textContent = "Änderungen aus dem Kundenportal werden automatisch mit Selection AI synchronisiert."; noticeEl.classList.add("show"); }
+    if (query.get("portal") === "returned") { noticeEl.textContent = "Änderungen aus dem Kundenportal werden automatisch mit SelectClick AI synchronisiert."; noticeEl.classList.add("show"); }
 
     renderAccount(); renderPlans();
     api("/v1/billing/plans", { method:"GET", auth:false }).then((result) => {

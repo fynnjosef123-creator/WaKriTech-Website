@@ -1,9 +1,13 @@
 (function () {
   const API_URL = "https://selection-ai-api.onrender.com";
-  const SESSION_KEY = "selection_ai_web_session";
+  const SESSION_KEY = "selectclick_ai_web_session";
+  const LEGACY_SESSION_KEY = "selection_ai_web_session";
 
   function readSession() {
-    try { return JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null"); } catch { return null; }
+    try {
+      const raw = sessionStorage.getItem(SESSION_KEY) || sessionStorage.getItem(LEGACY_SESSION_KEY);
+      return JSON.parse(raw || "null");
+    } catch { return null; }
   }
 
   function saveSession(session) {
@@ -74,5 +78,5 @@
     });
   }
 
-  window.SelectionAIContractFlow = { init };
+  window.SelectClickAIContractFlow = { init };
 }());

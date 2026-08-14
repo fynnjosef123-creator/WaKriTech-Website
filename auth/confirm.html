@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Selection AI Konto bestaetigen | WaKriTech</title>
-  <meta name="description" content="Bestaetige deine E-Mail-Adresse fuer Selection AI.">
+  <title>SelectClick AI Konto bestaetigen | WaKriTech</title>
+  <meta name="description" content="Bestaetige deine E-Mail-Adresse fuer SelectClick AI.">
   <style>
     :root {
       --bg: #101827;
@@ -158,12 +158,12 @@
     <section class="panel">
       <div class="brand">
         <div class="mark">AI</div>
-        <span>Selection AI</span>
+        <span>SelectClick AI</span>
       </div>
 
       <h1>Konto bestaetigen</h1>
       <p>
-        Bestaetige deine E-Mail-Adresse, damit dein Selection AI Konto aktiviert wird.
+        Bestaetige deine E-Mail-Adresse, damit dein SelectClick AI Konto aktiviert wird.
         Danach kannst du dich in der Desktop-App anmelden.
       </p>
 
@@ -228,7 +228,7 @@
           throw new Error(payload.error_description || payload.msg || payload.message || "Bestaetigung fehlgeschlagen.");
         }
 
-        setStatus("Dein Konto ist aktiviert. Du kannst dich jetzt in der Selection AI App anmelden.", "success");
+        setStatus("Dein Konto ist aktiviert. Du kannst dich jetzt in der SelectClick AI App anmelden.", "success");
       } catch (error) {
         setStatus(friendlyError(error.message), "error");
         button.disabled = false;
